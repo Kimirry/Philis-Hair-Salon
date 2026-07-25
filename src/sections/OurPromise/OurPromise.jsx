@@ -42,7 +42,7 @@ const promises = [
 export default function OurPromise() {
   return (
     <section className="relative py-24 sm:py-32 bg-white overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(244,163,185,0.05),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(236,72,153,0.05),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(251,207,232,0.06),transparent_50%)]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,12 +53,12 @@ export default function OurPromise() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="inline-block text-xs sm:text-sm tracking-[0.25em] uppercase text-rose-400 font-medium mb-4">
+          <span className="inline-block text-xs sm:text-sm tracking-[0.25em] uppercase text-pink-400 font-medium mb-4">
             What We Stand For
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-5">
             Our{" "}
-            <span className="font-medium bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
+            <span className="font-medium bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
               Promise
             </span>
           </h2>
@@ -77,7 +77,7 @@ export default function OurPromise() {
               transition={{ delay: i * 0.1, duration: 0.5 }}
               className="text-center group"
             >
-              <div className="w-14 h-14 bg-rose-50 group-hover:bg-rose-100 rounded-2xl flex items-center justify-center text-rose-500 mx-auto mb-5 transition-colors duration-300">
+              <div className="w-14 h-14 bg-pink-50 group-hover:bg-pink-100 rounded-2xl flex items-center justify-center text-pink-500 mx-auto mb-5 transition-colors duration-300">
                 {promise.icon}
               </div>
               <h3 className="text-base font-medium text-gray-900 mb-2">{promise.title}</h3>
@@ -85,18 +85,6 @@ export default function OurPromise() {
             </motion.div>
           ))}
         </div>
-
-        {/* Fun bottom line */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-center mt-14 text-xs text-gray-400 italic max-w-md mx-auto"
-        >
-          *The "no hard selling" promise does not apply when you ask for 
-          the premium package. Because it's genuinely better.
-        </motion.p>
       </div>
     </section>
   );

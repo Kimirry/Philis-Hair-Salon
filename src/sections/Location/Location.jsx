@@ -41,10 +41,9 @@ const contactInfo = [
 export default function Location() {
   return (
     <section className="relative py-24 sm:py-32 bg-gradient-to-b from-white to-pink-50/30 overflow-hidden">
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-rose-100/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-100/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -52,12 +51,12 @@ export default function Location() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16 sm:mb-20"
         >
-          <span className="inline-block text-xs sm:text-sm tracking-[0.25em] uppercase text-rose-400 font-medium mb-4">
+          <span className="inline-block text-xs sm:text-sm tracking-[0.25em] uppercase text-pink-400 font-medium mb-4">
             Find Us
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-5">
             Visit{" "}
-            <span className="font-medium bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
+            <span className="font-medium bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
               Philis
             </span>
           </h2>
@@ -75,7 +74,6 @@ export default function Location() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-2 space-y-8"
           >
-            {/* Contact cards */}
             <div className="space-y-4">
               {contactInfo.map((item, i) => (
                 <motion.div
@@ -86,13 +84,13 @@ export default function Location() {
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   className="flex items-start gap-4 bg-white rounded-2xl p-5 shadow-sm border border-gray-100"
                 >
-                  <div className="flex-shrink-0 w-11 h-11 bg-rose-50 rounded-xl flex items-center justify-center text-rose-500">
+                  <div className="flex-shrink-0 w-11 h-11 bg-pink-50 rounded-xl flex items-center justify-center text-pink-500">
                     {item.icon}
                   </div>
                   <div>
                     <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">{item.label}</p>
                     {item.href ? (
-                      <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-gray-900 font-medium hover:text-rose-500 transition-colors">
+                      <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-gray-900 font-medium hover:text-pink-500 transition-colors">
                         {item.value}
                       </a>
                     ) : (
@@ -103,7 +101,6 @@ export default function Location() {
               ))}
             </div>
 
-            {/* Hours */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +109,7 @@ export default function Location() {
               className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
             >
               <h3 className="text-sm font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                <svg className="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 Opening Hours
@@ -126,8 +123,8 @@ export default function Location() {
                 ))}
               </div>
               <div className="mt-4 pt-4 border-t border-gray-100">
-                <p className="text-xs text-rose-500 font-medium flex items-center gap-1.5">
-                  <span className="w-2 h-2 bg-rose-400 rounded-full animate-pulse" />
+                <p className="text-xs text-pink-500 font-medium flex items-center gap-1.5">
+                  <span className="w-2 h-2 bg-pink-400 rounded-full animate-pulse" />
                   Last appointment accepted at 6:00 PM
                 </p>
               </div>
@@ -144,7 +141,7 @@ export default function Location() {
           >
             <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-3xl overflow-hidden shadow-xl border border-gray-100">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.5!2d51.53!3d25.29!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDE3JzI0LjAiTiA1McKwMzEnNDguMCJF!5e0!3m2!1sen!2sqa!4v1700000000000!5m2!1sen!2sqa"
+                src="https://maps.google.com/maps?q=Philis+Hair+Salon+Al+Khalidiya+Doha+Qatar&t=&z=17&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -154,15 +151,14 @@ export default function Location() {
                 title="Philis Hair & Beauty Salon location in Al Khalidiya, Doha, Qatar"
                 className="absolute inset-0"
               />
-              {/* Overlay card on map */}
               <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-auto bg-white/95 backdrop-blur-md rounded-2xl px-5 py-4 shadow-lg max-w-xs">
                 <p className="font-semibold text-gray-900 text-sm">Philis Hair & Beauty</p>
                 <p className="text-xs text-gray-500 mt-0.5">Al Khalidiya, Doha, Qatar</p>
                 <a
-                  href="https://maps.google.com/?q=Al+Khalidiya+Doha+Qatar"
+                  href="https://maps.google.com/maps/search/Philis%20Hair%20Salon/@25.268516540527344,51.54402160644531,17z?hl=en"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-rose-500 font-medium mt-2 hover:text-rose-600 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs text-pink-500 font-medium mt-2 hover:text-pink-600 transition-colors"
                 >
                   Get Directions
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

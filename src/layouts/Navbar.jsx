@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { HiOutlineMenu, HiX } from "react-icons/hi";
 import logo from "../assets/logo.png";
 
 const navLinks = [
@@ -13,15 +14,8 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -34,22 +28,38 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Floating Glass Navbar - Heavy blur to hide underlying text */}
+      {/* Slim Floating White Navbar */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-white/90 backdrop-blur-2xl border border-white/50 shadow-xl shadow-black/5 rounded-2xl mx-4 sm:mx-5 mt-3 sm:mt-4"
-            : "bg-black/20 backdrop-blur-2xl border border-white/20 rounded-2xl mx-4 sm:mx-5 mt-3 sm:mt-4"
-        }`}
+        className="
+          fixed 
+          top-0 
+          left-0 
+          right-0 
+          z-50 
+          transition-all 
+          duration-300
+          bg-white/90 
+          backdrop-blur-2xl 
+          border 
+          border-white/50 
+          shadow-lg 
+          shadow-black/5 
+          rounded-2xl 
+          mx-4 
+          sm:mx-5 
+          mt-3 
+          sm:mt-4
+        "
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-20 lg:h-24">
-            {/* Logo - Scaled down to be elegant */}
+          <div className="flex items-center justify-between h-11 lg:h-12">
+            
+            {/* Logo */}
             <Link to="/" className="flex-shrink-0 group">
               <img
                 src={logo}
                 alt="Philis Hair Salon"
-                className="h-12 sm:h-14 lg:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-7 sm:h-8 lg:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
 
@@ -63,21 +73,19 @@ export default function Navbar() {
                   <Link
                     key={link.to}
                     to={link.to}
-                    className={`relative px-4 py-2 rounded-full transition-all duration-300 ${
+                    className={`relative px-3 py-1.5 rounded-full transition-all duration-300 ${
                       isBooking
                         ? "bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white shadow-lg shadow-pink-500/20 ml-2 hover:-translate-y-0.5 hover:shadow-xl"
                         : isActive
-                        ? (scrolled ? "text-pink-500" : "text-pink-200")
-                        : (scrolled ? "text-gray-700 hover:text-pink-500" : "text-white/90 hover:text-white")
-                    } ${!isBooking ? "text-[15px] font-light tracking-wide hover:-translate-y-0.5 hover:scale-[1.02]" : "text-[15px] font-medium tracking-wide"}`}
+                        ? "text-pink-500"
+                        : "text-gray-700 hover:text-pink-500"
+                    } ${!isBooking ? "text-sm font-light tracking-wide hover:-translate-y-0.5 hover:scale-[1.02]" : "text-sm font-medium tracking-wide"}`}
                   >
                     {link.label}
                     {isActive && !isBooking && (
                       <motion.div
                         layoutId="nav-indicator"
-                        className={`absolute left-3 right-3 -bottom-1 h-[2px] rounded-full ${
-                          scrolled ? "bg-gradient-to-r from-pink-400 to-rose-400" : "bg-gradient-to-r from-pink-300 to-rose-300"
-                        }`}
+                        className="absolute left-3 right-3 -bottom-1 h-[2px] rounded-full bg-gradient-to-r from-pink-400 to-rose-400"
                         transition={{ type: "spring", stiffness: 500, damping: 30 }}
                       />
                     )}
@@ -86,23 +94,17 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* Mobile Header - Just Hamburger on far right */}
+            {/* Mobile Hamburger - Clean React Icons */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className={`w-11 h-11 flex items-center justify-center rounded-xl transition-colors lg:hidden ${scrolled ? 'hover:bg-pink-50' : 'hover:bg-white/10'}`}
+              className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-pink-50 transition-colors lg:hidden text-gray-900"
               aria-label="Toggle menu"
             >
-              <div className="relative w-5 h-4">
-                <span className={`absolute left-0 w-5 h-0.5 rounded-full transition-all duration-300 ${
-                  mobileOpen ? "top-1.5 rotate-45" : "top-0"
-                } ${scrolled ? 'bg-gray-900' : 'bg-white'}`} />
-                <span className={`absolute left-0 top-1.5 w-5 h-0.5 rounded-full transition-all duration-300 ${
-                  mobileOpen ? "opacity-0 scale-0" : "opacity-100"
-                } ${scrolled ? 'bg-gray-900' : 'bg-white'}`} />
-                <span className={`absolute left-0 w-5 h-0.5 rounded-full transition-all duration-300 ${
-                  mobileOpen ? "top-1.5 -rotate-45" : "top-3"
-                } ${scrolled ? 'bg-gray-900' : 'bg-white'}`} />
-              </div>
+              {mobileOpen ? (
+                <HiX className="w-5 h-5" />
+              ) : (
+                <HiOutlineMenu className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -134,12 +136,10 @@ export default function Navbar() {
                   <img src={logo} alt="Philis Hair Salon" className="h-9 w-auto object-contain" />
                   <button
                     onClick={() => setMobileOpen(false)}
-                    className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-pink-50 transition-colors"
+                    className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-pink-50 transition-colors text-gray-500"
                     aria-label="Close menu"
                   >
-                    <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                    <HiX className="w-5 h-5" />
                   </button>
                 </div>
 

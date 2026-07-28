@@ -1,4 +1,4 @@
-import doorImage from "../../assets/door.jpeg";
+import nailsImage from "../../assets/nails3.jpeg";
 
 const WHATSAPP_URL = `https://wa.me/97455257237?text=${encodeURIComponent(
   "Hi, I'd like to book an appointment at Philis Hair & Beauty Salon."
@@ -7,158 +7,125 @@ const WHATSAPP_URL = `https://wa.me/97455257237?text=${encodeURIComponent(
 export default function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden">
+      {/* Background - Shifted right so bright nails don't cover text */}
+      <div
+        className="absolute inset-0 scale-105"
+        style={{
+          backgroundImage: `url(${nailsImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "70% center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
 
-      {/* Background */}
+      {/* Dark Overlay */}
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: `url(${doorImage})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "118%",
-          backgroundPosition: "74% center",
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,.64), rgba(0,0,0,.68), rgba(0,0,0,.74))",
         }}
       />
 
-      {/* Premium Gradient */}
-      <div
-        className="absolute inset-0 hidden lg:block"
-        style={{
-          background: `
-            linear-gradient(
-              90deg,
-              rgba(0,0,0,.05) 0%,
-              rgba(0,0,0,.10) 18%,
-              rgba(0,0,0,.18) 30%,
-              rgba(0,0,0,.32) 42%,
-              rgba(0,0,0,.52) 54%,
-              rgba(0,0,0,.72) 67%,
-              rgba(0,0,0,.88) 82%,
-              rgba(0,0,0,.96) 100%
-            )
-          `,
-        }}
-      />
+      {/* Pink Luxury Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(236,72,153,.20),transparent_55%)]" />
 
-      {/* Mobile Overlay */}
-      <div className="absolute inset-0 bg-black/55 lg:hidden" />
+      {/* Hero Content - Floating directly on image */}
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-6">
+        <div className="max-w-5xl mx-auto text-center">
 
-      {/* Hero Content */}
-      <div className="relative z-10 flex min-h-screen items-center justify-end">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-4 mb-10">
+            <div className="h-px w-14 bg-pink-400/60" />
+            <span className="uppercase tracking-[0.28em] text-sm text-pink-200 font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+              Philis Hair & Beauty Salon
+            </span>
+            <div className="h-px w-14 bg-pink-400/60" />
+          </div>
 
-        <div
-          className="
-            w-full
-            lg:w-[36%]
-            lg:mr-16
-            xl:mr-24
-            px-6
-            sm:px-10
-            pt-16
-            pb-16
-          "
-        >
-
+          {/* Heading - Luminous Off-White with Deep Shadows */}
           <h1
-            className="
-              font-serif
-              font-bold
-              leading-[1.05]
-              text-5xl
-              sm:text-6xl
-              xl:text-7xl
-            "
+            className="font-serif font-bold leading-[0.92] tracking-tight"
+            style={{
+              // Multi-layered shadow creates a "wonder" 3D pop effect without looking cheap
+              textShadow: "0 4px 30px rgba(0,0,0, 1), 0 2px 10px rgba(0,0,0, 0.8)"
+            }}
           >
-            <span className="text-white">
-              Luxury Hair
+            {/* Pure bright white for contrast */}
+            <span className="block text-white text-5xl sm:text-6xl lg:text-7xl xl:text-8xl">
+              Luxury Hair &
             </span>
 
-            <br />
-
-            <span className="text-white">
-              & Beauty
-            </span>
-
-            <br />
-
-            <span
-              className="
-                bg-gradient-to-r
-                from-pink-200
-                via-rose-100
-                to-yellow-100
-                bg-clip-text
-                text-transparent
-              "
-            >
-              Styled To
-            </span>
-
-            <br />
-
-            <span
-              className="
-                bg-gradient-to-r
-                from-pink-200
-                via-rose-100
-                to-yellow-100
-                bg-clip-text
-                text-transparent
-              "
-            >
-              Perfection
+            {/* "Not really white" - A soft, warm, luminous blush-white */}
+            <span className="block mt-2 text-[#FFEEF2] text-5xl sm:text-6xl lg:text-7xl xl:text-8xl">
+              Beauty Salon
             </span>
           </h1>
 
+          {/* Location with Script Font & Dividers */}
+          <div className="mt-8 flex items-center justify-center gap-6">
+            <div className="h-px w-20 bg-pink-300/40 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]" />
+            <p
+              className="
+                text-3xl
+                md:text-4xl
+                text-pink-200
+                font-light
+                italic
+                tracking-wide
+              "
+              style={{
+                fontFamily: "'Allura', cursive",
+                textShadow: "0 2px 15px rgba(0,0,0, 0.9)"
+              }}
+            >
+              In Doha, Qatar
+            </p>
+            <div className="h-px w-20 bg-pink-300/40 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]" />
+          </div>
 
-          <p
-            className="
-              mt-6
-              max-w-md
-              text-lg
-              leading-8
-              text-white/90
-            "
+          {/* Description */}
+          <p 
+            className="mt-10 max-w-3xl mx-auto text-lg md:text-xl leading-9 text-white/90"
+            style={{ textShadow: "0 2px 12px rgba(0,0,0, 0.7)" }}
           >
-            Experience exceptional hair styling, luxury beauty treatments and
-            personalised care designed to bring out your confidence and beauty.
+            Experience premium hair styling, nail artistry, lash extensions, 
+            makeup, waxing, and luxury beauty treatments tailored to help you 
+            look and feel your absolute best.
           </p>
 
-
-          <div
-            className="
-              mt-8
-              flex
-              flex-col
-              sm:flex-row
-              gap-4
-            "
-          >
-
+          {/* Buttons */}
+          <div className="mt-12 flex flex-col sm:flex-row justify-center gap-5">
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="
+                group
                 inline-flex
                 items-center
                 justify-center
                 rounded-full
-                bg-pink-500
-                hover:bg-pink-600
-                px-8
+                bg-gradient-to-r
+                from-pink-500
+                to-rose-500
+                hover:from-pink-600
+                hover:to-rose-600
+                px-10
                 py-4
                 text-white
                 font-semibold
+                shadow-2xl
+                shadow-pink-900/50
                 transition-all
                 duration-300
                 hover:-translate-y-1
-                shadow-xl
-                shadow-pink-500/30
+                hover:shadow-pink-900/60
               "
             >
-              Book Your Appointment
+              Book via WhatsApp
+              <svg className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>
-
 
             <a
               href="#services"
@@ -168,39 +135,41 @@ export default function Hero() {
                 justify-center
                 rounded-full
                 border
-                border-white/25
-                bg-white/10
+                border-pink-300/40
+                bg-white/5
                 backdrop-blur-sm
-                hover:bg-white/20
-                px-8
+                hover:bg-white/15
+                px-10
                 py-4
                 text-white
                 font-semibold
-                transition
+                transition-all
+                duration-300
+                hover:-translate-y-1
               "
             >
               Explore Services
             </a>
-
           </div>
 
-
-          <div className="mt-10">
-
-            <div className="text-yellow-400 text-3xl tracking-[0.3em]">
+          {/* Rating */}
+          <div className="mt-14 flex flex-col items-center">
+            <div 
+              className="text-pink-300 text-3xl tracking-[0.35em]"
+              style={{ textShadow: "0 2px 10px rgba(0,0,0, 0.8)" }}
+            >
               ★★★★★
             </div>
-
-            <p className="mt-2 text-white/80">
-              Trusted by clients across Doha.
+            <p 
+              className="mt-3 text-white/80 text-base"
+              style={{ textShadow: "0 2px 8px rgba(0,0,0, 0.7)" }}
+            >
+              Trusted by clients across Doha for exceptional beauty experiences.
             </p>
-
           </div>
 
         </div>
-
       </div>
-
     </section>
   );
 }

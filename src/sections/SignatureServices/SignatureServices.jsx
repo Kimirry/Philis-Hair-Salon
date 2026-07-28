@@ -1,70 +1,35 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-import hair1 from "../../assets/hair1.jpeg";
-import hair5 from "../../assets/hair5.jpeg";
-import nails1 from "../../assets/nails1.jpeg";
-import nails4 from "../../assets/nails4.jpeg";
-import nails7 from "../../assets/nails7.jpeg";
-import nails10 from "../../assets/nails10.jpeg";
-import nails13 from "../../assets/nails13.jpeg";
-import nails16 from "../../assets/nails16.jpeg";
+import hair1 from "../../assets/hair11.jpeg";
+import nails1 from "../../assets/nails11.jpeg";
 import makeup1 from "../../assets/makeup1.jpeg";
+import nails7 from "../../assets/nails7.jpeg";
 
 const services = [
   {
     name: "Hair Styling",
-    slug: "/services/manicure",
-    description: "Precision cuts, color, and styling for every occasion",
+    slug: "/services/hair-styling",
+    description: "Precision cuts, vibrant color, and expert styling tailored for every occasion.",
     image: hair1,
   },
   {
     name: "Manicure",
     slug: "/services/manicure",
-    description: "Flawless nails with gel, acrylic, and classic finishes",
+    description: "Flawless nails with gel, acrylic, and classic finishes for elegant hands.",
     image: nails1,
-  },
-  {
-    name: "Pedicure",
-    slug: "/services/pedicure",
-    description: "Relaxing foot care with premium products and polish",
-    image: nails4,
   },
   {
     name: "Makeup",
     slug: "/services/makeup",
-    description: "Bridal, editorial, and everyday glam by expert artists",
+    description: "Bridal, editorial, and everyday glam created by our expert artists.",
     image: makeup1,
   },
   {
     name: "Lash Extensions",
     slug: "/services/lash-extensions",
-    description: "Custom lash lifts, sets, and volume enhancements",
+    description: "Custom lash lifts, full sets, and volume enhancements for a striking look.",
     image: nails7,
-  },
-  {
-    name: "Facial Treatment",
-    slug: "/services/facial",
-    description: "Deep cleansing, hydrating, and anti-aging facials",
-    image: nails10,
-  },
-  {
-    name: "Waxing",
-    slug: "/services/waxing",
-    description: "Gentle, effective hair removal for silky smooth skin",
-    image: nails13,
-  },
-  {
-    name: "Massage",
-    slug: "/services/massage",
-    description: "Therapeutic body and scalp massages for total relaxation",
-    image: nails16,
-  },
-  {
-    name: "Braiding",
-    slug: "/services/braiding",
-    description: "Intricate braids, cornrows, and protective styles",
-    image: hair5,
   },
 ];
 
@@ -73,7 +38,7 @@ const cardVariants = {
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { delay: i * 0.1, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
   }),
 };
 
@@ -105,7 +70,8 @@ export default function SignatureServices() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* Updated Grid for 4 items */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-6">
           {services.map((service, i) => (
             <motion.div
               key={service.name}
@@ -117,7 +83,7 @@ export default function SignatureServices() {
             >
               <Link
                 to={service.slug}
-                className="group block relative rounded-2xl overflow-hidden bg-gray-50 shadow-sm hover:shadow-xl transition-all duration-500"
+                className="group block relative rounded-2xl overflow-hidden bg-gray-50 shadow-sm hover:shadow-xl transition-all duration-500 h-full"
               >
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <img
@@ -126,18 +92,20 @@ export default function SignatureServices() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  {/* Stronger gradient to make text always readable */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
                     <h3 className="text-xl font-medium text-white mb-2 group-hover:translate-y-0 translate-y-1 transition-transform duration-300">
                       {service.name}
                     </h3>
-                    <p className="text-sm text-white/80 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                    {/* Text is now always visible */}
+                    <p className="text-sm text-white/90 leading-relaxed">
                       {service.description}
                     </p>
                   </div>
 
-                  <div className="absolute top-5 right-5 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:-translate-y-1">
+                  <div className="absolute top-4 right-4 w-9 h-9 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:-translate-y-1">
                     <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
                     </svg>

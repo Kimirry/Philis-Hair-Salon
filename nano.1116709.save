@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name philishairsalon.com www.philishairsalon.com;
+
+    root /var/www/philis-hair-salon/dist;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    location ~* \.(js|css|png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf|mp4)$ {
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+        try_files $uri =404;
+    }
+}

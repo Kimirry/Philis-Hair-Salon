@@ -1,212 +1,470 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+
+import hair2 from "../../assets/hair2.jpeg";
+import hair4 from "../../assets/hair4.jpeg";
+import hair5 from "../../assets/hair5.jpeg";
+import hair6 from "../../assets/hair6.jpeg";
+import hair7 from "../../assets/hair7.jpeg";
+import hair8 from "../../assets/hair8.jpeg";
+import hair9 from "../../assets/hair9.jpeg";
+import hair10 from "../../assets/hair10.jpeg";
+import hair12 from "../../assets/hair12.jpeg";
+import hair13 from "../../assets/hair13.jpeg";
+import hair14 from "../../assets/hair14.jpeg";
+
+import nails2 from "../../assets/nails2.jpeg";
+import nails3 from "../../assets/nails3.jpeg";
+import nails4 from "../../assets/nails4.jpeg";
+import nails6 from "../../assets/nails6.jpeg";
+import nails8 from "../../assets/nails8.jpeg";
+import nails9 from "../../assets/nails9.jpeg";
+import nails10 from "../../assets/nails10.jpeg";
+import nails12 from "../../assets/nails12.jpeg";
+import nails13 from "../../assets/nails13.jpeg";
+import nails14 from "../../assets/nails14.jpeg";
+import nails15 from "../../assets/nails15.jpeg";
+import nails16 from "../../assets/nails16.jpeg";
+import nails17 from "../../assets/nails17.jpeg";
+import nails18 from "../../assets/nails18.jpeg";
+
+import wig2 from "../../assets/wig2.jpeg";
+
+const whatsappUrl =
+  "https://wa.me/97455257237?text=Hi%2C%20I'd%20like%20to%20ask%20about%20Philis%20beauty%20services.";
+
+const categories = [
+  "All",
+  "Hair",
+  "Nails",
+  "Makeup",
+  "Lashes",
+  "Skin",
+  "Wigs",
+  "Wellness",
+];
 
 const services = [
   {
-    slug: "manicure",
-    name: "Manicure",
-    tagline: "Nail Art & Care",
-    excerpt: "From classic polished elegance to intricate, hand-painted nail art. Our technicians sculpt and care for your hands using premium, long-lasting formulas.",
-    image: "https://picsum.photos/seed/philis-svc-manicure/600/800.jpg",
+    name: "Hair Styling",
+    category: "Hair",
+    description:
+      "Thoughtful styling tailored to your hair, your occasion, and the look you want to leave with.",
+    image: hair2,
+    tag: "Hair",
   },
   {
-    slug: "pedicure",
-    name: "Pedicure",
-    tagline: "Foot Care & Polish",
-    excerpt: "Surrender your feet to a sanctuary of relaxation. Deep soaks, exfoliation, and flawless polish application leave you walking on air.",
-    image: "https://picsum.photos/seed/philis-svc-pedicure/600/800.jpg",
-  },
-  {
-    slug: "makeup",
-    name: "Makeup",
-    tagline: "Glam & Bridal",
-    excerpt: "Whether it's your wedding day or a night out, our artists blend premium pigments to enhance your natural beauty and ensure you look flawless for hours.",
-    image: "https://picsum.photos/seed/philis-svc-makeup/600/800.jpg",
-  },
-  {
-    slug: "lash-extensions",
-    name: "Lash Extensions",
-    tagline: "Lifts & Sets",
-    excerpt: "Wake up beautiful. Our custom lash lifts, classic sets, and volume extensions are meticulously applied to complement your unique eye shape.",
-    image: "https://picsum.photos/seed/philis-svc-lashes/600/800.jpg",
-  },
-  {
-    slug: "facial",
-    name: "Facial Treatment",
-    tagline: "Skincare & Glow",
-    excerpt: "Breathe life back into your skin. Our curated facials target everything from deep impurities to hydration, leaving your complexion radiant and youthful.",
-    image: "https://picsum.photos/seed/philis-svc-facial/600/800.jpg",
-  },
-  {
-    slug: "waxing",
-    name: "Waxing",
-    tagline: "Smooth & Silky",
-    excerpt: "Experience incredibly smooth skin with our gentle, premium wax formulas. Designed for minimal discomfort and maximum, long-lasting results.",
-    image: "https://picsum.photos/seed/philis-svc-waxing/600/800.jpg",
-  },
-  {
-    slug: "massage",
-    name: "Massage",
-    tagline: "Relax & Rejuvenate",
-    excerpt: "Melt away the stress of Doha. Our therapeutic massages are tailored to your body's needs, restoring balance, circulation, and deep peace.",
-    image: "https://picsum.photos/seed/philis-svc-massage/600/800.jpg",
-  },
-  {
-    slug: "braiding",
     name: "Braiding",
-    tagline: "Protective Styles",
-    excerpt: "Artistry meets heritage. From knotless box braids to intricate cornrows, our stylists craft protective styles that are as stunning as they are gentle.",
-    image: "https://picsum.photos/seed/philis-svc-braiding/600/800.jpg",
+    category: "Hair",
+    description:
+      "From everyday protective styles to statement braids, created with patience and attention to detail.",
+    image: hair4,
+    tag: "Hair",
   },
   {
-    slug: "wig-installation",
+    name: "Weaving",
+    category: "Hair",
+    description:
+      "Professional weaving services designed around your preferred style, finish, and overall look.",
+    image: hair5,
+    tag: "Hair",
+  },
+  {
+    name: "Hair Care & Styling",
+    category: "Hair",
+    description:
+      "A considered approach to styling and hair care, with recommendations based on your individual needs.",
+    image: hair6,
+    tag: "Hair",
+  },
+  {
+    name: "Manicure",
+    category: "Nails",
+    description:
+      "Clean, polished nails with classic and contemporary finishes for an effortlessly refined look.",
+    image: nails2,
+    tag: "Nails",
+  },
+  {
+    name: "Pedicure",
+    category: "Nails",
+    description:
+      "A relaxing nail-care experience focused on neat finishing, comfort, and beautifully maintained feet.",
+    image: nails3,
+    tag: "Nails",
+  },
+  {
+    name: "Nail Art",
+    category: "Nails",
+    description:
+      "Detailed nail designs ranging from understated elegance to something a little more expressive.",
+    image: nails4,
+    tag: "Nails",
+  },
+  {
+    name: "Makeup",
+    category: "Makeup",
+    description:
+      "Makeup looks created around your features, occasion, personal style, and the finish you want.",
+    image: nails6,
+    tag: "Beauty",
+  },
+  {
+    name: "Lash Extensions",
+    category: "Lashes",
+    description:
+      "Lash styling tailored to complement your eyes and create anything from soft definition to a fuller finish.",
+    image: nails8,
+    tag: "Beauty",
+  },
+  {
+    name: "Facial Treatments",
+    category: "Skin",
+    description:
+      "Dedicated skincare experiences designed around cleansing, refreshing, and caring for your skin.",
+    image: nails9,
+    tag: "Skin",
+  },
+  {
+    name: "Waxing",
+    category: "Skin",
+    description:
+      "Professional waxing services carried out with care, cleanliness, and attention to your comfort.",
+    image: nails10,
+    tag: "Beauty",
+  },
+  {
     name: "Wig Installation",
-    tagline: "Flawless Fits",
-    excerpt: "Achieve a completely undetectable hairline. We specialize in frontals, closures, and glueless installs, customizing each wig to frame your face perfectly.",
-    image: "https://picsum.photos/seed/philis-svc-wig/600/800.jpg",
+    category: "Wigs",
+    description:
+      "Careful wig installation and finishing for a polished result that complements your chosen style.",
+    image: wig2,
+    tag: "Wigs",
+  },
+  {
+    name: "Hair Finishing",
+    category: "Hair",
+    description:
+      "The final details that bring a hairstyle together — shape, texture, movement, and finish.",
+    image: hair7,
+    tag: "Hair",
+  },
+  {
+    name: "Hair Styling",
+    category: "Hair",
+    description:
+      "Versatile styling for occasions when you want your hair to feel especially put together.",
+    image: hair8,
+    tag: "Hair",
+  },
+  {
+    name: "Protective Styling",
+    category: "Hair",
+    description:
+      "Protective styles created with attention to neatness, comfort, and your preferred aesthetic.",
+    image: hair9,
+    tag: "Hair",
+  },
+  {
+    name: "Hair Transformation",
+    category: "Hair",
+    description:
+      "A considered styling experience for those ready for a refreshed or completely different look.",
+    image: hair10,
+    tag: "Hair",
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08 },
+const journalTopics = [
+  {
+    number: "01",
+    title: "Choosing a hairstyle that feels like you",
+    text: "A good beauty appointment starts with knowing what you want — and understanding what works for you.",
   },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
+  {
+    number: "02",
+    title: "How to prepare for your beauty appointment",
+    text: "A few thoughtful preparations can make your salon experience smoother and more enjoyable.",
+  },
+  {
+    number: "03",
+    title: "The little details behind a polished look",
+    text: "Great beauty work is often about the finishing details — the things that make a look feel complete.",
+  },
+];
 
 export default function Services() {
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredServices =
+    activeCategory === "All"
+      ? services
+      : services.filter((service) => service.category === activeCategory);
+
   return (
-    <section className="relative bg-white overflow-hidden">
-      {/* Subtle background texture */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_0%,rgba(244,163,185,0.04),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_100%,rgba(251,207,232,0.05),transparent_50%)]" />
+    <>
+      {/* Hero */}
+      <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-24 bg-gradient-to-b from-pink-50/60 via-white to-white overflow-hidden">
+        <div className="absolute top-16 left-1/2 -translate-x-1/2 w-[30rem] h-[30rem] bg-rose-100/30 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Header / Hero */}
-      <div className="relative z-10 pt-32 pb-16 sm:pt-40 sm:pb-20 px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="max-w-3xl mx-auto"
-        >
-          <span className="inline-block text-xs sm:text-sm tracking-[0.25em] uppercase text-pink-400 font-medium mb-6">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-block text-xs sm:text-sm tracking-[0.25em] uppercase text-rose-400 font-medium mb-4"
+          >
             The Philis Menu
-          </span>
-          
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 leading-tight mb-6">
-            Our Beauty{" "}
-            <span className="font-medium bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
-              Services
+          </motion.span>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-6"
+          >
+            Beauty,{" "}
+            <span className="font-medium bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
+              Your Way.
             </span>
-          </h1>
+          </motion.h1>
 
-          {/* Brand Quote */}
-          <p className="text-xl sm:text-2xl font-serif italic text-gray-400 mb-8">
-            "I'm just a girl who loves making other girls feel awesome."
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-gray-500 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto"
+          >
+            Explore the beauty services available at Philis Hair & Beauty
+            Salon in Al Khalidiya, Doha. Every appointment is approached with
+            care, attention, and an understanding of your personal style.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Intro */}
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <p className="text-gray-500 text-base sm:text-lg leading-relaxed">
+            Not sure what is right for you? That's completely fine. Tell us
+            what you're looking for and we'll help you find the service that
+            best fits your desired look.
           </p>
 
-          <p className="text-gray-500 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            At Philis, we don’t just offer appointments; we curate personalized beauty experiences. 
-            Every service is thoughtfully designed to nurture your confidence, celebrate your unique features, 
-            and send you back into the world feeling absolutely radiant.
-          </p>
-        </motion.div>
-      </div>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 mt-7 text-rose-500 hover:text-rose-600 font-medium transition-colors"
+          >
+            Ask us on WhatsApp
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
 
-      {/* Services Grid */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-32">
-        
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-        >
-          {services.map((service) => (
-            <motion.div
-              key={service.slug}
-              variants={cardVariants}
-              className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500"
+      {/* Filters + Services */}
+      <section className="py-20 sm:py-28 bg-neutral-50/70">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeCategory === category
+                    ? "bg-gray-900 text-white shadow-lg"
+                    : "bg-white text-gray-600 hover:bg-pink-50 hover:text-rose-500 border border-gray-100"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          <motion.div
+            layout
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredServices.map((service, index) => (
+                <motion.article
+                  key={service.name + service.image}
+                  layout
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: index * 0.03,
+                  }}
+                  className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={`${service.name} at Philis Hair & Beauty Salon`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+
+                    <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                      <span className="inline-block text-[10px] uppercase tracking-[0.2em] text-rose-200 mb-2">
+                        {service.tag}
+                      </span>
+
+                      <h2 className="text-xl sm:text-2xl font-medium text-white">
+                        {service.name}
+                      </h2>
+                    </div>
+                  </div>
+
+                  <div className="p-5 sm:p-6">
+                    <p className="text-gray-500 text-sm leading-relaxed mb-5">
+                      {service.description}
+                    </p>
+
+                    <a
+                      href={`${whatsappUrl}&service=${encodeURIComponent(
+                        service.name
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-rose-500 hover:text-rose-600 transition-colors"
+                    >
+                      Ask about this service
+                      <span className="transition-transform group-hover:translate-x-1">
+                        →
+                      </span>
+                    </a>
+                  </div>
+                </motion.article>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Massage / privacy section */}
+      <section className="py-20 sm:py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="rounded-3xl bg-neutral-950 text-white p-8 sm:p-12 text-center">
+            <span className="text-rose-300 text-2xl">✦</span>
+
+            <h2 className="mt-4 text-2xl sm:text-3xl font-light">
+              Wellness deserves{" "}
+              <span className="font-medium">privacy.</span>
+            </h2>
+
+            <p className="mt-5 text-gray-400 leading-relaxed max-w-2xl mx-auto">
+              Massage and other private wellness experiences are available by
+              appointment. For client privacy and discretion, we do not publish
+              treatment photographs from these services.
+            </p>
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex mt-7 bg-white text-gray-900 hover:bg-rose-50 px-6 py-3 rounded-full text-sm font-medium transition-colors"
             >
-              {/* Image */}
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={`${service.name} at Philis Salon, Doha`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                
-                {/* Tagline Badge on Image */}
-                <div className="absolute top-4 left-4">
-                  <span className="bg-white/10 backdrop-blur-md border border-white/20 text-white text-[11px] tracking-widest uppercase px-3 py-1.5 rounded-full">
-                    {service.tagline}
-                  </span>
-                </div>
-              </div>
+              Ask about wellness services
+            </a>
+          </div>
+        </div>
+      </section>
 
-              {/* Content */}
-              <div className="flex flex-col flex-1 p-6 sm:p-7">
-                <h3 className="text-2xl font-light text-gray-900 mb-3 group-hover:text-pink-600 transition-colors duration-300">
-                  {service.name}
+      {/* Beauty Journal */}
+      <section className="py-20 sm:py-28 bg-gradient-to-b from-pink-50/40 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-12">
+            <span className="inline-block text-xs tracking-[0.25em] uppercase text-rose-400 font-medium mb-4">
+              From the Beauty Journal
+            </span>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900">
+              More than a{" "}
+              <span className="font-medium text-rose-500">service menu.</span>
+            </h2>
+
+            <p className="mt-5 text-gray-500 text-base sm:text-lg leading-relaxed">
+              Beauty is also about knowing your options, caring for your look,
+              and understanding what works for you. Explore our own Beauty
+              Journal for practical ideas and salon inspiration.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {journalTopics.map((topic, index) => (
+              <motion.div
+                key={topic.number}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="bg-white rounded-3xl p-7 border border-rose-100/70 shadow-sm"
+              >
+                <span className="text-sm text-rose-400 font-medium">
+                  {topic.number}
+                </span>
+
+                <h3 className="mt-4 text-xl font-medium text-gray-900">
+                  {topic.title}
                 </h3>
-                
-                {/* The "Detailed Scripture" */}
-                <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
-                  {service.excerpt}
+
+                <p className="mt-3 text-gray-500 text-sm leading-relaxed">
+                  {topic.text}
                 </p>
 
                 <Link
-                  to={`/services/${service.slug}`}
-                  className="inline-flex items-center justify-center gap-2 w-full bg-stone-50 hover:bg-pink-50 text-gray-700 hover:text-pink-600 border border-gray-100 hover:border-pink-100 py-3 rounded-xl text-sm font-medium transition-all duration-300 group/btn"
+                  to="/blog"
+                  className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-rose-500 hover:text-rose-600"
                 >
-                  View Full Menu
-                  <svg className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+                  Read the journal
+                  <span>→</span>
                 </Link>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        {/* Bottom CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-20 bg-stone-50 rounded-3xl p-8 sm:p-12 text-center border border-stone-100"
-        >
-          <h2 className="text-2xl sm:text-3xl font-light text-gray-900 mb-4">
-            Not Sure Where to Start?
+      {/* Final CTA */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <span className="text-rose-400 text-2xl">✦</span>
+
+          <h2 className="mt-5 text-3xl sm:text-4xl font-light text-gray-900">
+            Found your{" "}
+            <span className="font-medium text-rose-500">next look?</span>
           </h2>
-          <p className="text-gray-500 max-w-xl mx-auto mb-8 leading-relaxed">
-            Our team loves helping you build the perfect self-care day. 
-            Reach out on WhatsApp, tell us what you're looking for, and we’ll 
-            handle the rest.
+
+          <p className="mt-5 text-gray-500 text-lg">
+            Let's talk about what you have in mind.
           </p>
-          <a
-            href="https://wa.me/97455257237?text=%20Hi%2C%20I'd%20like%20to%20book%20at%20Philis."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-8 py-4 rounded-full text-base font-medium transition-all duration-300 shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 hover:-translate-y-0.5"
-          >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
-            Book on WhatsApp
-          </a>
-        </motion.div>
-      </div>
-    </section>
+
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-gradient-to-r from-pink-500 to-rose-500 text-white px-8 py-4 rounded-full font-medium shadow-lg shadow-pink-500/20 hover:-translate-y-0.5 transition-all"
+            >
+              Book via WhatsApp
+            </a>
+
+            <Link
+              to="/gallery"
+              className="inline-flex items-center justify-center border border-gray-200 text-gray-700 hover:border-gray-900 hover:text-gray-900 px-8 py-4 rounded-full font-medium transition-all"
+            >
+              View Our Work
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

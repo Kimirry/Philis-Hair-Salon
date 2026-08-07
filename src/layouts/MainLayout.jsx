@@ -1,16 +1,20 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import ScrollToTop from "../components/scrollToTop";
 
-export default function ScrollToTop() {
-  const { pathname } = useLocation();
+export default function MainLayout() {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <ScrollToTop />
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
-  }, [pathname]);
+      <Navbar />
 
-  return null;
+      <main className="flex-1">
+        <Outlet />
+      </main>
+
+      <Footer />
+    </div>
+  );
 }

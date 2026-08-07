@@ -1,470 +1,438 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-
-import hair2 from "../../assets/hair2.jpeg";
-import hair4 from "../../assets/hair4.jpeg";
-import hair5 from "../../assets/hair5.jpeg";
-import hair6 from "../../assets/hair6.jpeg";
-import hair7 from "../../assets/hair7.jpeg";
-import hair8 from "../../assets/hair8.jpeg";
-import hair9 from "../../assets/hair9.jpeg";
-import hair10 from "../../assets/hair10.jpeg";
-import hair12 from "../../assets/hair12.jpeg";
-import hair13 from "../../assets/hair13.jpeg";
-import hair14 from "../../assets/hair14.jpeg";
-
-import nails2 from "../../assets/nails2.jpeg";
-import nails3 from "../../assets/nails3.jpeg";
-import nails4 from "../../assets/nails4.jpeg";
-import nails6 from "../../assets/nails6.jpeg";
-import nails8 from "../../assets/nails8.jpeg";
-import nails9 from "../../assets/nails9.jpeg";
-import nails10 from "../../assets/nails10.jpeg";
-import nails12 from "../../assets/nails12.jpeg";
-import nails13 from "../../assets/nails13.jpeg";
-import nails14 from "../../assets/nails14.jpeg";
-import nails15 from "../../assets/nails15.jpeg";
-import nails16 from "../../assets/nails16.jpeg";
-import nails17 from "../../assets/nails17.jpeg";
-import nails18 from "../../assets/nails18.jpeg";
-
-import wig2 from "../../assets/wig2.jpeg";
-
-const whatsappUrl =
-  "https://wa.me/97455257237?text=Hi%2C%20I'd%20like%20to%20ask%20about%20Philis%20beauty%20services.";
-
-const categories = [
-  "All",
-  "Hair",
-  "Nails",
-  "Makeup",
-  "Lashes",
-  "Skin",
-  "Wigs",
-  "Wellness",
-];
+import {
+  Sparkles,
+  Heart,
+  Scissors,
+  Hand,
+  Eye,
+  Waves,
+  Smile,
+  ArrowRight,
+} from "lucide-react";
 
 const services = [
   {
-    name: "Hair Styling",
-    category: "Hair",
-    description:
-      "Thoughtful styling tailored to your hair, your occasion, and the look you want to leave with.",
-    image: hair2,
-    tag: "Hair",
-  },
-  {
-    name: "Braiding",
-    category: "Hair",
-    description:
-      "From everyday protective styles to statement braids, created with patience and attention to detail.",
-    image: hair4,
-    tag: "Hair",
-  },
-  {
-    name: "Weaving",
-    category: "Hair",
-    description:
-      "Professional weaving services designed around your preferred style, finish, and overall look.",
-    image: hair5,
-    tag: "Hair",
-  },
-  {
-    name: "Hair Care & Styling",
-    category: "Hair",
-    description:
-      "A considered approach to styling and hair care, with recommendations based on your individual needs.",
-    image: hair6,
-    tag: "Hair",
-  },
-  {
-    name: "Manicure",
-    category: "Nails",
-    description:
-      "Clean, polished nails with classic and contemporary finishes for an effortlessly refined look.",
-    image: nails2,
-    tag: "Nails",
-  },
-  {
-    name: "Pedicure",
-    category: "Nails",
-    description:
-      "A relaxing nail-care experience focused on neat finishing, comfort, and beautifully maintained feet.",
-    image: nails3,
-    tag: "Nails",
-  },
-  {
-    name: "Nail Art",
-    category: "Nails",
-    description:
-      "Detailed nail designs ranging from understated elegance to something a little more expressive.",
-    image: nails4,
-    tag: "Nails",
-  },
-  {
-    name: "Makeup",
-    category: "Makeup",
-    description:
-      "Makeup looks created around your features, occasion, personal style, and the finish you want.",
-    image: nails6,
-    tag: "Beauty",
-  },
-  {
-    name: "Lash Extensions",
-    category: "Lashes",
-    description:
-      "Lash styling tailored to complement your eyes and create anything from soft definition to a fuller finish.",
-    image: nails8,
-    tag: "Beauty",
-  },
-  {
-    name: "Facial Treatments",
-    category: "Skin",
-    description:
-      "Dedicated skincare experiences designed around cleansing, refreshing, and caring for your skin.",
-    image: nails9,
-    tag: "Skin",
-  },
-  {
-    name: "Waxing",
-    category: "Skin",
-    description:
-      "Professional waxing services carried out with care, cleanliness, and attention to your comfort.",
-    image: nails10,
-    tag: "Beauty",
-  },
-  {
-    name: "Wig Installation",
-    category: "Wigs",
-    description:
-      "Careful wig installation and finishing for a polished result that complements your chosen style.",
-    image: wig2,
-    tag: "Wigs",
-  },
-  {
-    name: "Hair Finishing",
-    category: "Hair",
-    description:
-      "The final details that bring a hairstyle together — shape, texture, movement, and finish.",
-    image: hair7,
-    tag: "Hair",
-  },
-  {
-    name: "Hair Styling",
-    category: "Hair",
-    description:
-      "Versatile styling for occasions when you want your hair to feel especially put together.",
-    image: hair8,
-    tag: "Hair",
-  },
-  {
-    name: "Protective Styling",
-    category: "Hair",
-    description:
-      "Protective styles created with attention to neatness, comfort, and your preferred aesthetic.",
-    image: hair9,
-    tag: "Hair",
-  },
-  {
-    name: "Hair Transformation",
-    category: "Hair",
-    description:
-      "A considered styling experience for those ready for a refreshed or completely different look.",
-    image: hair10,
-    tag: "Hair",
-  },
-];
-
-const journalTopics = [
-  {
     number: "01",
-    title: "Choosing a hairstyle that feels like you",
-    text: "A good beauty appointment starts with knowing what you want — and understanding what works for you.",
+    title: "Manicure",
+    description:
+      "Beautifully finished nails with careful attention to shape, detail and a polished finish.",
+    icon: Hand,
   },
   {
     number: "02",
-    title: "How to prepare for your beauty appointment",
-    text: "A few thoughtful preparations can make your salon experience smoother and more enjoyable.",
+    title: "Pedicure",
+    description:
+      "A relaxing foot-care experience designed to leave your feet refreshed, cared for and beautifully finished.",
+    icon: Heart,
   },
   {
     number: "03",
-    title: "The little details behind a polished look",
-    text: "Great beauty work is often about the finishing details — the things that make a look feel complete.",
+    title: "Makeup",
+    description:
+      "Elegant makeup looks tailored to your occasion, style and the finish you want to achieve.",
+    icon: Sparkles,
+  },
+  {
+    number: "04",
+    title: "Braiding",
+    description:
+      "Beautiful braiding styles created with precision, creativity and attention to your natural hair.",
+    icon: Scissors,
+  },
+  {
+    number: "05",
+    title: "Facial Treatment",
+    description:
+      "A soothing facial experience focused on cleansing, refreshing and giving your skin a cared-for appearance.",
+    icon: Smile,
+  },
+  {
+    number: "06",
+    title: "Weaving",
+    description:
+      "Versatile weave styles created to complement your look while giving you the freedom to express yourself.",
+    icon: Waves,
+  },
+  {
+    number: "07",
+    title: "Waxing",
+    description:
+      "Professional waxing services performed with care for a smooth and clean finish.",
+    icon: Sparkles,
+  },
+  {
+    number: "08",
+    title: "Lash Extensions",
+    description:
+      "Enhance your eyes with beautifully styled lash extensions designed to complement your features.",
+    icon: Eye,
+  },
+  {
+    number: "09",
+    title: "Massage",
+    description:
+      "Take a moment to unwind with a relaxing massage experience in a calm salon environment.",
+    icon: Heart,
+  },
+  {
+    number: "10",
+    title: "Wig Installation",
+    description:
+      "Professional wig installation with attention to placement, styling and a natural-looking finish.",
+    icon: Scissors,
   },
 ];
 
+const highlights = [
+  "Hair styling",
+  "Nails & beauty",
+  "Makeup",
+  "Skin care",
+  "Lashes",
+  "Wig services",
+];
+
 export default function Services() {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filteredServices =
-    activeCategory === "All"
-      ? services
-      : services.filter((service) => service.category === activeCategory);
-
   return (
-    <>
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-24 bg-gradient-to-b from-pink-50/60 via-white to-white overflow-hidden">
-        <div className="absolute top-16 left-1/2 -translate-x-1/2 w-[30rem] h-[30rem] bg-rose-100/30 rounded-full blur-3xl pointer-events-none" />
+    <main className="bg-white text-gray-900 overflow-hidden">
+      {/* =========================================================
+          HERO
+      ========================================================= */}
+      <section className="relative min-h-[62vh] flex items-center overflow-hidden bg-white">
+        {/* Soft pink ambient background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-[28rem] h-[28rem] rounded-full bg-pink-100 blur-3xl opacity-80" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-block text-xs sm:text-sm tracking-[0.25em] uppercase text-rose-400 font-medium mb-4"
-          >
-            The Philis Menu
-          </motion.span>
+          <div className="absolute -bottom-40 -left-40 w-[28rem] h-[28rem] rounded-full bg-rose-100 blur-3xl opacity-70" />
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-6"
-          >
-            Beauty,{" "}
-            <span className="font-medium bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
-              Your Way.
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-gray-500 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto"
-          >
-            Explore the beauty services available at Philis Hair & Beauty
-            Salon in Al Khalidiya, Doha. Every appointment is approached with
-            care, attention, and an understanding of your personal style.
-          </motion.p>
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-pink-50/70" />
         </div>
-      </section>
 
-      {/* Intro */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-gray-500 text-base sm:text-lg leading-relaxed">
-            Not sure what is right for you? That's completely fine. Tell us
-            what you're looking for and we'll help you find the service that
-            best fits your desired look.
-          </p>
-
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-7 text-rose-500 hover:text-rose-600 font-medium transition-colors"
-          >
-            Ask us on WhatsApp
-            <span aria-hidden="true">→</span>
-          </a>
-        </div>
-      </section>
-
-      {/* Filters + Services */}
-      <section className="py-20 sm:py-28 bg-neutral-50/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeCategory === category
-                    ? "bg-gray-900 text-white shadow-lg"
-                    : "bg-white text-gray-600 hover:bg-pink-50 hover:text-rose-500 border border-gray-100"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28">
           <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl"
           >
-            <AnimatePresence mode="popLayout">
-              {filteredServices.map((service, index) => (
-                <motion.article
-                  key={service.name + service.image}
-                  layout
-                  initial={{ opacity: 0, y: 25 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
+            <span className="inline-flex items-center gap-2 text-xs sm:text-sm tracking-[0.25em] uppercase text-pink-500 font-medium mb-5">
+              <Sparkles className="w-4 h-4" />
+              Beauty, hair & care
+            </span>
+
+            <h1 className="text-5xl sm:text-6xl lg:text-8xl font-light tracking-tight text-gray-900 leading-[0.95]">
+              Beauty made
+              <br />
+              <span className="font-medium bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
+                personal.
+              </span>
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-base sm:text-lg text-gray-500 leading-relaxed">
+              Discover hair, beauty and self-care services designed to help
+              you look beautiful, feel confident and leave Philis feeling
+              completely refreshed.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                to="/booking"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-pink-200 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-pink-300"
+              >
+                Book an Appointment
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+
+              <Link
+                to="/gallery"
+                className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-white px-6 py-3.5 text-sm font-medium text-gray-800 transition-all duration-300 hover:border-pink-400 hover:bg-pink-50 hover:text-pink-600"
+              >
+                Explore Our Work
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Bottom label */}
+        <div className="absolute bottom-5 left-0 right-0">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between border-t border-pink-100 pt-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-gray-400">
+                Philis Hair & Beauty
+              </p>
+
+              <p className="text-xs uppercase tracking-[0.2em] text-gray-400">
+                Doha, Qatar
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          INTRO
+      ========================================================= */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+            <motion.div
+              initial={{ opacity: 0, x: -25 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7 }}
+              className="lg:col-span-5"
+            >
+              <span className="text-xs tracking-[0.25em] uppercase text-pink-500 font-medium">
+                Our services
+              </span>
+
+              <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-light leading-tight text-gray-900">
+                More than a
+                <br />
+                <span className="font-medium text-pink-500">
+                  salon visit.
+                </span>
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 25 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7 }}
+              className="lg:col-span-7 lg:pt-5"
+            >
+              <p className="text-gray-500 text-lg leading-relaxed max-w-2xl">
+                At Philis Hair & Beauty, every appointment is an opportunity
+                to take a little time for yourself. From carefully styled
+                hair to beautiful nails, makeup, lashes and relaxing
+                treatments, our services are created around the way you want
+                to look and feel.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
+                {highlights.map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-2 text-sm text-gray-700"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-pink-400" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          SERVICES
+      ========================================================= */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-pink-50/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7 }}
+            className="max-w-2xl mb-10 sm:mb-14"
+          >
+            <span className="text-xs tracking-[0.25em] uppercase text-pink-500 font-medium">
+              What we offer
+            </span>
+
+            <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900">
+              Find your
+              <br />
+              <span className="font-medium text-pink-500">
+                perfect service.
+              </span>
+            </h2>
+
+            <p className="mt-4 text-gray-500 leading-relaxed">
+              Explore our beauty services and choose the experience that
+              feels right for you.
+            </p>
+          </motion.div>
+
+          {/* Service grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-pink-100 border border-pink-100 overflow-hidden rounded-3xl">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+
+              return (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
                   transition={{
-                    duration: 0.4,
-                    delay: index * 0.03,
+                    duration: 0.5,
+                    delay: Math.min(index * 0.04, 0.2),
                   }}
-                  className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500"
+                  className="group bg-white p-6 sm:p-7 lg:p-8 transition-all duration-300 hover:bg-pink-50/60"
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <img
-                      src={service.image}
-                      alt={`${service.name} at Philis Hair & Beauty Salon`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
-                    />
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="text-xs tracking-[0.15em] text-pink-400 font-medium">
+                      {service.number}
+                    </span>
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-
-                    <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
-                      <span className="inline-block text-[10px] uppercase tracking-[0.2em] text-rose-200 mb-2">
-                        {service.tag}
-                      </span>
-
-                      <h2 className="text-xl sm:text-2xl font-medium text-white">
-                        {service.name}
-                      </h2>
+                    <div className="w-10 h-10 rounded-full bg-pink-50 border border-pink-100 flex items-center justify-center text-pink-500 transition-all duration-300 group-hover:bg-pink-500 group-hover:text-white group-hover:border-pink-500">
+                      <Icon className="w-5 h-5" strokeWidth={1.5} />
                     </div>
                   </div>
 
-                  <div className="p-5 sm:p-6">
-                    <p className="text-gray-500 text-sm leading-relaxed mb-5">
-                      {service.description}
-                    </p>
+                  <h3 className="mt-7 text-xl sm:text-2xl font-medium text-gray-900">
+                    {service.title}
+                  </h3>
 
-                    <a
-                      href={`${whatsappUrl}&service=${encodeURIComponent(
-                        service.name
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-rose-500 hover:text-rose-600 transition-colors"
-                    >
-                      Ask about this service
-                      <span className="transition-transform group-hover:translate-x-1">
-                        →
-                      </span>
-                    </a>
-                  </div>
-                </motion.article>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Massage / privacy section */}
-      <section className="py-20 sm:py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="rounded-3xl bg-neutral-950 text-white p-8 sm:p-12 text-center">
-            <span className="text-rose-300 text-2xl">✦</span>
-
-            <h2 className="mt-4 text-2xl sm:text-3xl font-light">
-              Wellness deserves{" "}
-              <span className="font-medium">privacy.</span>
-            </h2>
-
-            <p className="mt-5 text-gray-400 leading-relaxed max-w-2xl mx-auto">
-              Massage and other private wellness experiences are available by
-              appointment. For client privacy and discretion, we do not publish
-              treatment photographs from these services.
-            </p>
-
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex mt-7 bg-white text-gray-900 hover:bg-rose-50 px-6 py-3 rounded-full text-sm font-medium transition-colors"
-            >
-              Ask about wellness services
-            </a>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-500">
+                    {service.description}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Beauty Journal */}
-      <section className="py-20 sm:py-28 bg-gradient-to-b from-pink-50/40 to-white">
+      {/* =========================================================
+          EXPERIENCE
+      ========================================================= */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12">
-            <span className="inline-block text-xs tracking-[0.25em] uppercase text-rose-400 font-medium mb-4">
-              From the Beauty Journal
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <span className="text-xs tracking-[0.25em] uppercase text-pink-500 font-medium">
+                The Philis experience
+              </span>
+
+              <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-light leading-tight text-gray-900">
+                Come for the
+                <br />
+                <span className="font-medium text-pink-500">beauty.</span>
+                <br />
+                Stay for the feeling.
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="space-y-6"
+            >
+              <div className="pb-6 border-b border-pink-100">
+                <p className="text-gray-500 text-lg leading-relaxed">
+                  We believe beauty is personal. That's why our approach is
+                  centered around listening to what you want, understanding
+                  your style and giving attention to the details that matter.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <div className="text-3xl font-light text-pink-500">
+                    01
+                  </div>
+
+                  <h3 className="mt-2 font-medium text-gray-900">
+                    Your style
+                  </h3>
+
+                  <p className="mt-2 text-sm text-gray-500 leading-relaxed">
+                    Bring your inspiration, your ideas or simply tell us what
+                    you need.
+                  </p>
+                </div>
+
+                <div>
+                  <div className="text-3xl font-light text-pink-500">
+                    02
+                  </div>
+
+                  <h3 className="mt-2 font-medium text-gray-900">
+                    Our expertise
+                  </h3>
+
+                  <p className="mt-2 text-sm text-gray-500 leading-relaxed">
+                    We'll help turn your vision into a finished look you'll
+                    love.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          BOOKING CTA
+      ========================================================= */}
+      <section className="px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 lg:pb-24 bg-white">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7 }}
+          className="relative max-w-7xl mx-auto overflow-hidden rounded-[2rem] bg-pink-50 border border-pink-100 px-6 py-12 sm:px-10 sm:py-14 lg:px-16"
+        >
+          {/* Soft pink decorative shapes */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute -top-32 right-0 w-80 h-80 bg-pink-200/50 rounded-full blur-3xl" />
+
+            <div className="absolute -bottom-40 left-1/3 w-80 h-80 bg-rose-200/40 rounded-full blur-3xl" />
+          </div>
+
+          <div className="relative z-10 max-w-3xl">
+            <span className="text-xs tracking-[0.25em] uppercase text-pink-500 font-medium">
+              Your beauty moment
             </span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900">
-              More than a{" "}
-              <span className="font-medium text-rose-500">service menu.</span>
+            <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 leading-tight">
+              Ready for your
+              <br />
+              <span className="font-medium text-pink-500">
+                next look?
+              </span>
             </h2>
 
-            <p className="mt-5 text-gray-500 text-base sm:text-lg leading-relaxed">
-              Beauty is also about knowing your options, caring for your look,
-              and understanding what works for you. Explore our own Beauty
-              Journal for practical ideas and salon inspiration.
+            <p className="mt-5 max-w-2xl text-gray-500 leading-relaxed">
+              From beautiful braids and flawless wigs to nails, makeup,
+              facials, lashes and more, let Philis Hair & Beauty create a
+              look made for you.
             </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {journalTopics.map((topic, index) => (
-              <motion.div
-                key={topic.number}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="bg-white rounded-3xl p-7 border border-rose-100/70 shadow-sm"
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link
+                to="/booking"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 px-6 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-pink-300"
               >
-                <span className="text-sm text-rose-400 font-medium">
-                  {topic.number}
-                </span>
+                Book an Appointment
+                <ArrowRight className="w-4 h-4" />
+              </Link>
 
-                <h3 className="mt-4 text-xl font-medium text-gray-900">
-                  {topic.title}
-                </h3>
-
-                <p className="mt-3 text-gray-500 text-sm leading-relaxed">
-                  {topic.text}
-                </p>
-
-                <Link
-                  to="/blog"
-                  className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-rose-500 hover:text-rose-600"
-                >
-                  Read the journal
-                  <span>→</span>
-                </Link>
-              </motion.div>
-            ))}
+              <a
+                href="https://wa.me/97455257237?text=Hi%2C%20I'd%20like%20to%20book%20an%20appointment%20at%20Philis%20Hair%20%26%20Beauty."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-white px-6 py-3.5 text-sm font-medium text-gray-800 transition-all duration-300 hover:border-pink-400 hover:bg-pink-100 hover:text-pink-600"
+              >
+                WhatsApp Us
+              </a>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </section>
-
-      {/* Final CTA */}
-      <section className="py-20 sm:py-28 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <span className="text-rose-400 text-2xl">✦</span>
-
-          <h2 className="mt-5 text-3xl sm:text-4xl font-light text-gray-900">
-            Found your{" "}
-            <span className="font-medium text-rose-500">next look?</span>
-          </h2>
-
-          <p className="mt-5 text-gray-500 text-lg">
-            Let's talk about what you have in mind.
-          </p>
-
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-gradient-to-r from-pink-500 to-rose-500 text-white px-8 py-4 rounded-full font-medium shadow-lg shadow-pink-500/20 hover:-translate-y-0.5 transition-all"
-            >
-              Book via WhatsApp
-            </a>
-
-            <Link
-              to="/gallery"
-              className="inline-flex items-center justify-center border border-gray-200 text-gray-700 hover:border-gray-900 hover:text-gray-900 px-8 py-4 rounded-full font-medium transition-all"
-            >
-              View Our Work
-            </Link>
-          </div>
-        </div>
-      </section>
-    </>
+    </main>
   );
 }

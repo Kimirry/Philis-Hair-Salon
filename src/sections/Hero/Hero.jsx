@@ -1,175 +1,160 @@
 import nailsImage from "../../assets/nails3.jpeg";
 
-const WHATSAPP_URL = `https://wa.me/97455257237?text=${encodeURIComponent(
-  "Hi, I'd like to book an appointment at Philis Hair & Beauty Salon."
-)}`;
+const WHATSAPP_URL =
+"https://wa.me/97455257237?text=" +
+encodeURIComponent(
+"Hi, I'd like to book an appointment at Philis Hair & Beauty Salon."
+);
 
 export default function Hero() {
-  return (
-    <section className="relative min-h-screen overflow-hidden">
-      {/* Background - Shifted right so bright nails don't cover text */}
-      <div
-        className="absolute inset-0 scale-105"
-        style={{
-          backgroundImage: `url(${nailsImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "70% center",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
+return (
+<section className="relative overflow-hidden bg-[#fffafb]">
 
-      {/* Dark Overlay */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(0,0,0,.64), rgba(0,0,0,.68), rgba(0,0,0,.74))",
-        }}
-      />
+  <div className="pointer-events-none absolute -top-40 -right-40 h-[28rem] w-[28rem] rounded-full bg-pink-100/40 blur-3xl" />
 
-      {/* Pink Luxury Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(236,72,153,.20),transparent_55%)]" />
+  <div className="pointer-events-none absolute -bottom-40 -left-40 h-[24rem] w-[24rem] rounded-full bg-rose-100/30 blur-3xl" />
 
-      {/* Hero Content - Floating directly on image */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-6">
-        <div className="max-w-5xl mx-auto text-center">
+  <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 xl:px-12 pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 lg:pb-24 min-h-screen flex items-center">
 
-          {/* Badge */}
-          <div className="inline-flex items-center gap-4 mb-10">
-            <div className="h-px w-14 bg-pink-400/60" />
-            <span className="uppercase tracking-[0.28em] text-sm text-pink-200 font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-              Philis Hair & Beauty Salon
-            </span>
-            <div className="h-px w-14 bg-pink-400/60" />
-          </div>
+    <div className="w-full grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-16 xl:gap-24 items-center">
 
-          {/* Heading - Luminous Off-White with Deep Shadows */}
-          <h1
-            className="font-serif font-bold leading-[0.92] tracking-tight"
-            style={{
-              // Multi-layered shadow creates a "wonder" 3D pop effect without looking cheap
-              textShadow: "0 4px 30px rgba(0,0,0, 1), 0 2px 10px rgba(0,0,0, 0.8)"
-            }}
-          >
-            {/* Pure bright white for contrast */}
-            <span className="block text-white text-5xl sm:text-6xl lg:text-7xl xl:text-8xl">
-              Luxury Hair &
-            </span>
+      <div className="relative z-20 max-w-xl">
 
-            {/* "Not really white" - A soft, warm, luminous blush-white */}
-            <span className="block mt-2 text-[#FFEEF2] text-5xl sm:text-6xl lg:text-7xl xl:text-8xl">
-              Beauty Salon
-            </span>
-          </h1>
+        <div className="flex items-center gap-3">
+          <span className="h-px w-8 bg-pink-500" />
 
-          {/* Location with Script Font & Dividers */}
-          <div className="mt-8 flex items-center justify-center gap-6">
-            <div className="h-px w-20 bg-pink-300/40 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]" />
-            <p
-              className="
-                text-3xl
-                md:text-4xl
-                text-pink-200
-                font-light
-                italic
-                tracking-wide
-              "
-              style={{
-                fontFamily: "'Allura', cursive",
-                textShadow: "0 2px 15px rgba(0,0,0, 0.9)"
-              }}
-            >
-              In Doha, Qatar
-            </p>
-            <div className="h-px w-20 bg-pink-300/40 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]" />
-          </div>
+          <span className="text-[10px] sm:text-xs uppercase tracking-[0.3em] font-medium text-pink-500">
+            Philis Hair & Beauty Salon
+          </span>
+        </div>
 
-          {/* Description */}
-          <p 
-            className="mt-10 max-w-3xl mx-auto text-lg md:text-xl leading-9 text-white/90"
-            style={{ textShadow: "0 2px 12px rgba(0,0,0, 0.7)" }}
-          >
-            Experience premium hair styling, nail artistry, lash extensions, 
-            makeup, waxing, and luxury beauty treatments tailored to help you 
-            look and feel your absolute best.
-          </p>
+        <h1 className="mt-7 font-serif font-medium text-gray-900 leading-[0.94] tracking-tight text-5xl sm:text-6xl lg:text-[4.7rem] xl:text-[5.5rem]">
+          Beauty,
+          <span className="block text-pink-500">
+            beautifully
+          </span>
+          expressed.
+        </h1>
 
-          {/* Buttons */}
-          <div className="mt-12 flex flex-col sm:flex-row justify-center gap-5">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                group
-                inline-flex
-                items-center
-                justify-center
-                rounded-full
-                bg-gradient-to-r
-                from-pink-500
-                to-rose-500
-                hover:from-pink-600
-                hover:to-rose-600
-                px-10
-                py-4
-                text-white
-                font-semibold
-                shadow-2xl
-                shadow-pink-900/50
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:shadow-pink-900/60
-              "
-            >
-              Book via WhatsApp
-              <svg className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </a>
+        <p className="mt-7 text-sm uppercase tracking-[0.24em] text-gray-500">
+          Doha, Qatar
+        </p>
 
-            <a
-              href="#services"
-              className="
-                inline-flex
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-pink-300/40
-                bg-white/5
-                backdrop-blur-sm
-                hover:bg-white/15
-                px-10
-                py-4
-                text-white
-                font-semibold
-                transition-all
-                duration-300
-                hover:-translate-y-1
-              "
-            >
-              Explore Services
-            </a>
-          </div>
+        <p className="mt-5 max-w-md text-base sm:text-lg leading-8 text-gray-500">
+          Hair, beauty, nails and lashes crafted
+          with care, creativity and a touch of
+          Philis elegance.
+        </p>
 
-          {/* Rating */}
-          <div className="mt-14 flex flex-col items-center">
-            <div 
-              className="text-pink-300 text-3xl tracking-[0.35em]"
-              style={{ textShadow: "0 2px 10px rgba(0,0,0, 0.8)" }}
-            >
-              ★★★★★
+        <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+          {["Hair", "Beauty", "Nails", "Lashes"].map((item, index) => (
+            <div key={item} className="flex items-center gap-3">
+              <span className="text-xs sm:text-sm text-gray-500">
+                {item}
+              </span>
+
+              {index < 3 && (
+                <span className="h-1 w-1 rounded-full bg-pink-300" />
+              )}
             </div>
-            <p 
-              className="mt-3 text-white/80 text-base"
-              style={{ textShadow: "0 2px 8px rgba(0,0,0, 0.7)" }}
+          ))}
+        </div>
+
+        <div className="mt-9 flex flex-col sm:flex-row gap-3">
+
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center justify-center rounded-full bg-pink-500 hover:bg-pink-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-pink-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-pink-500/25"
+          >
+            Book an Appointment
+
+            <svg
+              className="ml-2.5 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
             >
-              Trusted by clients across Doha for exceptional beauty experiences.
-            </p>
-          </div>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.8"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </a>
+
+          <a
+            href="#services"
+            className="inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-7 py-3.5 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-pink-200 hover:text-pink-500 hover:bg-pink-50/40 hover:-translate-y-0.5"
+          >
+            Explore Services
+          </a>
 
         </div>
+
+        <div className="mt-8 flex items-center gap-3 text-xs text-gray-400">
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-pink-50 text-pink-500">
+            ✓
+          </span>
+
+          <span>
+            Your beauty. Your moment.
+          </span>
+        </div>
+
       </div>
-    </section>
-  );
+
+      <div className="relative flex justify-center lg:justify-end">
+
+        <div className="absolute -left-3 lg:-left-5 top-10 bottom-10 w-px bg-gradient-to-b from-transparent via-pink-300 to-transparent" />
+
+        <div className="relative w-full max-w-[31rem] lg:max-w-[34rem] aspect-[4/5] overflow-hidden rounded-[2rem] bg-pink-50 shadow-[0_30px_80px_rgba(0,0,0,0.12)]">
+
+          <img
+            src={nailsImage}
+            alt="Beauty treatment at Philis Hair & Beauty Salon"
+            className="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-[1.025]"
+          />
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+
+        </div>
+
+        <div className="absolute -bottom-5 left-2 sm:left-0 lg:-left-10 rounded-2xl bg-white px-5 py-4 shadow-xl shadow-black/10 border border-gray-100">
+          <p className="text-[9px] uppercase tracking-[0.25em] text-pink-400 font-medium">
+            Beauty services
+          </p>
+
+          <p className="mt-1.5 text-sm font-medium text-gray-800">
+            Hair · Nails · Lashes
+          </p>
+        </div>
+
+        <div className="absolute -top-5 right-4 sm:right-0 lg:-right-5 flex h-16 w-16 items-center justify-center rounded-full bg-pink-500 text-white shadow-lg shadow-pink-500/20">
+          <span className="text-[8px] uppercase tracking-[0.2em] text-center leading-4">
+            Philis
+            <br />
+            Doha
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <a
+    href="#services"
+    className="absolute bottom-7 left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-3 text-[9px] uppercase tracking-[0.28em] text-gray-400 hover:text-pink-500 transition-colors"
+  >
+    Discover Philis
+    <span className="h-px w-8 bg-gray-300" />
+  </a>
+
+</section>
+
+);
 }

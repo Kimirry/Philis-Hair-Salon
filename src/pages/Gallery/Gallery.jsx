@@ -196,19 +196,19 @@ export default function Gallery() {
   return (
     <>
       {/* =========================================================
-          PAGE HEADER
+          PAGE HEADER (Tightened spacing & enriched copy)
       ========================================================= */}
-      <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-20 bg-gradient-to-b from-pink-50/60 via-white to-white overflow-hidden">
+      <section className="relative pt-28 pb-14 sm:pt-36 sm:pb-18 bg-gradient-to-b from-pink-50/60 via-white to-white overflow-hidden">
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-rose-100/20 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="inline-block text-xs sm:text-sm tracking-[0.25em] uppercase text-rose-400 font-medium mb-4"
           >
-            Our Work
+            The Philis Portfolio
           </motion.span>
 
           <motion.h1
@@ -217,9 +217,9 @@ export default function Gallery() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-6"
           >
-            Beauty{" "}
+            Crafted with{" "}
             <span className="font-medium bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
-              Portfolio
+              intention.
             </span>
           </motion.h1>
 
@@ -227,10 +227,14 @@ export default function Gallery() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-gray-500 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto"
+            className="text-gray-500 text-base sm:text-lg leading-relaxed"
           >
-            A selection of the hair, nail, and wig work created at Philis Hair
-            & Beauty Salon in Al Khalidiya, Doha.
+            Every style we create is a reflection of the person wearing it. 
+            Browse through a curated collection of our hair transformations, 
+            intricate nail art, and flawless wig installations. While this 
+            gallery showcases some of our favorite visual work, it represents 
+            just a portion of the full beauty experience waiting for you at 
+            our Al Khalidiya studio.
           </motion.p>
         </div>
       </section>
@@ -317,27 +321,28 @@ export default function Gallery() {
             </AnimatePresence>
           </div>
 
-          {/* Privacy Note */}
+          {/* Privacy Note (Elevated copy to match the new header) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto mt-16 text-center"
+            className="max-w-2xl mx-auto mt-16 text-center"
           >
             <div className="w-10 h-10 rounded-full bg-pink-50 text-rose-400 flex items-center justify-center mx-auto mb-4">
               ✦
             </div>
 
             <h2 className="text-xl sm:text-2xl font-medium text-gray-900 mb-3">
-              Some beauty experiences remain private.
+              Discretion is part of the experience.
             </h2>
 
             <p className="text-sm sm:text-base text-gray-500 leading-relaxed">
-              Our portfolio highlights selected work that can be comfortably
-              shared. Certain treatments and personal beauty experiences are
-              intentionally not photographed, allowing our clients to enjoy
-              their appointments with privacy and discretion.
+              We believe true beauty should be enjoyed in the moment. While we 
+              love sharing our hair, nail, and wig artistry, services like 
+              facials, massages, and body treatments are intentionally kept 
+              off-camera. This ensures every guest can completely unwind, knowing 
+              their personal experience remains entirely private.
             </p>
           </motion.div>
         </div>

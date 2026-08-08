@@ -5,194 +5,313 @@ import { HiOutlineMenu, HiX } from "react-icons/hi";
 import logo from "../assets/logo.png";
 
 const navLinks = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "Our Story" },
-  { to: "/services", label: "Services" },
-  { to: "/gallery", label: "Gallery" },
-  { to: "/booking", label: "Book Now" },
-  { to: "/contact", label: "Contact" },
+{ to: "/", label: "Home" },
+{ to: "/about", label: "Our Story" },
+{ to: "/services", label: "Services" },
+{ to: "/gallery", label: "Gallery" },
+{ to: "/booking", label: "Book Now" },
+{ to: "/contact", label: "Contact" },
+];
+
+const WHATSAPP_URL =
+"https://wa.me/97455257237?text=" +
+encodeURIComponent(
+"Hi, I'd like to book an appointment at Philis Hair & Beauty Salon."
+);
+
+const socialLinks = [
+{
+name: "Instagram",
+href: "https://www.instagram.com/philis_hair_salon/",
+icon: (
+<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" >
+<rect x="3" y="3" width="18" height="18" rx="5" strokeWidth="1.7" />
+<circle cx="12" cy="12" r="4.2" strokeWidth="1.7" />
+<circle cx="17.4" cy="6.7" r="1" fill="currentColor" stroke="none" />
+</svg>
+),
+},
+{
+name: "TikTok",
+href: "https://www.tiktok.com/@philishairsalon",
+icon: (
+<svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" >
+<path d="M15.5 3c.35 1.95 1.45 3.28 3.5 3.4v3.05c-1.2.12-2.3-.28-3.47-.95v6.35c0 3.7-2.1 5.8-5.25 5.8-3.1 0-5.28-2.02-5.28-5.05 0-3.1 2.35-5.08 5.48-5.08.32 0 .65.03.97.08v3.13a3.8 3.8 0 00-.9-.12c-1.32 0-2.3.78-2.3 2.03 0 1.17.85 2 2.08 2 1.4 0 2.25-.93 2.25-2.68V3h2.92z" />
+</svg>
+),
+},
+{
+name: "Facebook",
+href: "https://www.facebook.com/",
+icon: (
+<svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" >
+<path d="M13.5 21v-8h2.75l.4-3h-3.15V8.08c0-.87.24-1.46 1.5-1.46h1.8V3.94c-.31-.04-1.37-.14-2.6-.14-2.57 0-4.33 1.57-4.33 4.45V10H7v3h2.87v8h3.63z" />
+</svg>
+),
+},
 ];
 
 export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
+const [mobileOpen, setMobileOpen] = useState(false);
+const location = useLocation();
 
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [location.pathname]);
+useEffect(() => {
+setMobileOpen(false);
+}, [location.pathname]);
 
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [mobileOpen]);
+useEffect(() => {
+document.body.style.overflow = mobileOpen ? "hidden" : "";
 
-  return (
-    <>
-      {/* Slim Floating White Navbar */}
-      <nav
-        className="
-          fixed 
-          top-0 
-          left-0 
-          right-0 
-          z-50 
-          transition-all 
-          duration-300
-          bg-white/90 
-          backdrop-blur-2xl 
-          border 
-          border-white/50 
-          shadow-lg 
-          shadow-black/5 
-          rounded-2xl 
-          mx-4 
-          sm:mx-5 
-          mt-3 
-          sm:mt-4
-        "
+return () => {
+  document.body.style.overflow = "";
+};
+
+}, [mobileOpen]);
+
+return (
+<>
+<nav className="fixed top-5 sm:top-6 left-4 right-4 sm:left-5 sm:right-5 lg:left-6 lg:right-6 z-50 rounded-2xl bg-white/95 backdrop-blur-xl border border-white shadow-[0_12px_40px_rgba(0,0,0,0.07)]">
+<div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-6">
+<div className="h-14 sm:h-16 flex items-center justify-between">
+
+        <Link
+          to="/"
+          className="flex-shrink-0 group"
+          aria-label="Philis Hair & Beauty Salon"
+        >
+          <img
+            src={logo}
+            alt="Philis Hair & Beauty Salon"
+            className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+          />
+        </Link>
+
+        <div className="hidden lg:flex items-center gap-1">
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.to;
+            const isBooking = link.to === "/booking";
+
+            return (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={
+                  "relative px-3 xl:px-3.5 py-2 rounded-full transition-all duration-300 " +
+                  (
+                    isBooking
+                      ? "ml-2 bg-pink-500 hover:bg-pink-600 text-white shadow-md shadow-pink-500/20 hover:-translate-y-0.5 text-sm font-medium"
+                      : "text-gray-600 hover:text-pink-500 hover:bg-pink-50/70 text-sm font-light tracking-wide"
+                  )
+                }
+              >
+                {link.label}
+
+                {isActive && !isBooking && (
+                  <motion.span
+                    layoutId="nav-indicator"
+                    className="absolute left-3 right-3 bottom-0.5 h-px rounded-full bg-pink-500"
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 30,
+                    }}
+                  />
+                )}
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className="hidden lg:flex items-center gap-2 ml-4 pl-4 border-l border-gray-100">
+          {socialLinks.map((social) => (
+            <a
+              key={social.name}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={"Philis " + social.name}
+              className="flex h-8 w-8 items-center justify-center rounded-full text-gray-400 hover:bg-pink-50 hover:text-pink-500 transition-all duration-200"
+            >
+              {social.icon}
+            </a>
+          ))}
+        </div>
+
+        <div className="flex lg:hidden items-center gap-1">
+          {socialLinks.map((social) => (
+            <a
+              key={social.name}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={"Philis " + social.name}
+              className="flex h-8 w-8 items-center justify-center rounded-full text-gray-400 hover:bg-pink-50 hover:text-pink-500 transition-all"
+            >
+              {social.icon}
+            </a>
+          ))}
+
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="ml-1 flex h-9 w-9 items-center justify-center rounded-xl text-gray-700 hover:bg-pink-50 hover:text-pink-500 transition-colors"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? (
+              <HiX className="w-5 h-5" />
+            ) : (
+              <HiOutlineMenu className="w-5 h-5" />
+            )}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <AnimatePresence>
+    {mobileOpen && (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.25 }}
+        className="fixed inset-0 z-40 lg:hidden"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-11 lg:h-12">
-            
-            {/* Logo */}
-            <Link to="/" className="flex-shrink-0 group">
-              <img
-                src={logo}
-                alt="Philis Hair Salon"
-                className="h-7 sm:h-8 lg:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-              />
-            </Link>
+        <div
+          className="absolute inset-0 bg-black/35 backdrop-blur-sm"
+          onClick={() => setMobileOpen(false)}
+        />
 
-            {/* Desktop Links */}
-            <div className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link) => {
+        <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "100%" }}
+          transition={{
+            type: "spring",
+            damping: 30,
+            stiffness: 300,
+          }}
+          className="absolute top-0 right-0 bottom-0 w-full max-w-sm bg-white shadow-2xl"
+        >
+          <div className="flex flex-col h-full">
+
+            <div className="flex items-center justify-between px-6 py-5 border-b border-pink-100">
+              <Link
+                to="/"
+                onClick={() => setMobileOpen(false)}
+              >
+                <img
+                  src={logo}
+                  alt="Philis Hair & Beauty Salon"
+                  className="h-9 w-auto object-contain"
+                />
+              </Link>
+
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="flex h-9 w-9 items-center justify-center rounded-xl bg-pink-50 text-gray-600 hover:text-pink-500"
+                aria-label="Close menu"
+              >
+                <HiX className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="px-6 py-5 bg-[#fff9fb] border-b border-pink-100">
+              <p className="text-[10px] uppercase tracking-[0.25em] text-gray-400">
+                Connect with Philis
+              </p>
+
+              <div className="mt-4 flex items-center gap-2.5">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-full border border-pink-100 bg-white px-3 py-2 text-xs text-gray-600 hover:text-pink-500 hover:border-pink-200 transition-all"
+                  >
+                    <span className="text-pink-400">
+                      {social.icon}
+                    </span>
+                    {social.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex-1 overflow-y-auto py-5 px-4">
+              {navLinks.map((link, i) => {
                 const isActive = location.pathname === link.to;
                 const isBooking = link.to === "/booking";
 
                 return (
-                  <Link
+                  <motion.div
                     key={link.to}
-                    to={link.to}
-                    className={`relative px-3 py-1.5 rounded-full transition-all duration-300 ${
-                      isBooking
-                        ? "bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white shadow-lg shadow-pink-500/20 ml-2 hover:-translate-y-0.5 hover:shadow-xl"
-                        : isActive
-                        ? "text-pink-500"
-                        : "text-gray-700 hover:text-pink-500"
-                    } ${!isBooking ? "text-sm font-light tracking-wide hover:-translate-y-0.5 hover:scale-[1.02]" : "text-sm font-medium tracking-wide"}`}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      delay: 0.04 + i * 0.05,
+                      duration: 0.3,
+                    }}
                   >
-                    {link.label}
-                    {isActive && !isBooking && (
-                      <motion.div
-                        layoutId="nav-indicator"
-                        className="absolute left-3 right-3 -bottom-1 h-[2px] rounded-full bg-gradient-to-r from-pink-400 to-rose-400"
-                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                      />
+                    {isBooking ? (
+                      <div className="my-4">
+                        <a
+                          href={WHATSAPP_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center w-full rounded-2xl bg-pink-500 hover:bg-pink-600 py-3.5 text-sm font-medium text-white shadow-lg shadow-pink-500/20"
+                        >
+                          Book via WhatsApp
+                        </a>
+                      </div>
+                    ) : (
+                      <Link
+                        to={link.to}
+                        className={
+                          "flex items-center justify-between px-4 py-3.5 rounded-xl transition-all " +
+                          (
+                            isActive
+                              ? "bg-pink-50 text-pink-600 font-medium"
+                              : "text-gray-700 hover:bg-pink-50/60"
+                          )
+                        }
+                      >
+                        <span>{link.label}</span>
+
+                        <svg
+                          className="w-4 h-4 text-gray-300"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.8}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </Link>
                     )}
-                  </Link>
+                  </motion.div>
                 );
               })}
             </div>
 
-            {/* Mobile Hamburger - Clean React Icons */}
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-pink-50 transition-colors lg:hidden text-gray-900"
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? (
-                <HiX className="w-5 h-5" />
-              ) : (
-                <HiOutlineMenu className="w-5 h-5" />
-              )}
-            </button>
+            <div className="px-6 py-5 border-t border-pink-100">
+              <p className="text-center text-xs text-gray-400">
+                Philis Hair & Beauty Salon · Doha, Qatar
+              </p>
+            </div>
+
           </div>
-        </div>
-      </nav>
+        </motion.div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</>
 
-      {/* Mobile Menu Drawer */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 lg:hidden"
-          >
-            <div
-              className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-              onClick={() => setMobileOpen(false)}
-            />
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="absolute top-0 right-0 bottom-0 w-full max-w-sm bg-white/90 backdrop-blur-3xl shadow-2xl"
-            >
-              <div className="flex flex-col h-full">
-                <div className="flex items-center justify-between px-6 py-5 border-b border-pink-50">
-                  <img src={logo} alt="Philis Hair Salon" className="h-9 w-auto object-contain" />
-                  <button
-                    onClick={() => setMobileOpen(false)}
-                    className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-pink-50 transition-colors text-gray-500"
-                    aria-label="Close menu"
-                  >
-                    <HiX className="w-5 h-5" />
-                  </button>
-                </div>
-
-                <div className="flex-1 overflow-y-auto py-4 px-4">
-                  {navLinks.map((link, i) => {
-                    const isActive = location.pathname === link.to;
-                    const isBooking = link.to === "/booking";
-
-                    return (
-                      <motion.div
-                        key={link.to}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.05 + i * 0.05, duration: 0.3 }}
-                      >
-                        {isBooking ? (
-                          <div className="my-3">
-                            <a
-                              href="https://wa.me/97455257237?text=%20Hi%2C%20I'd%20like%20to%20book%20at%20Philis."
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-pink-400 to-rose-400 text-white py-3.5 rounded-2xl font-medium shadow-lg shadow-pink-500/20"
-                            >
-                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                              </svg>
-                              Book via WhatsApp
-                            </a>
-                          </div>
-                        ) : (
-                          <Link
-                            to={link.to}
-                            className={`flex items-center justify-between px-4 py-3.5 rounded-xl transition-all duration-200 ${
-                              isActive
-                                ? "bg-pink-50 text-pink-600 font-medium"
-                                : "text-gray-700 hover:bg-pink-50/50"
-                            }`}
-                          >
-                            <span>{link.label}</span>
-                            <svg className="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </Link>
-                        )}
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
+);
 }

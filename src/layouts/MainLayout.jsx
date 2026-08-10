@@ -5,12 +5,12 @@ import ScrollToTop from "../components/scrollToTop";
 
 export default function MainLayout() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-white text-gray-900">
       <ScrollToTop />
 
       <Navbar />
 
-      <main className="flex-1">
+      <main>
         <Outlet />
       </main>
 

@@ -1,16 +1,22 @@
 import { useLanguage } from "../../context/LanguageContext";
 
 export default function LanguageSwitcher() {
-  const { language, toggleLanguage } = useLanguage();
+  const { language, setLanguage } = useLanguage();
+
+  const isArabic = language === "AR";
 
   return (
     <button
       type="button"
-      onClick={toggleLanguage}
-      aria-label="Change language"
-      className="border border-pink-300 rounded-full px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-500 transition"
+      onClick={() => setLanguage(isArabic ? "EN" : "AR")}
+      aria-label={
+        isArabic
+          ? "Switch to English"
+          : "التبديل إلى العربية"
+      }
+      className="rounded-full border border-pink-300 px-4 py-2 text-sm font-medium text-gray-600 transition hover:bg-pink-50 hover:text-pink-500"
     >
-      {language === "en" ? "العربية" : "English"}
+      {isArabic ? "EN" : "العربية"}
     </button>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
 
 // Hair
 import hair2 from "../../assets/hair2.jpeg";
@@ -34,233 +35,87 @@ import nails18 from "../../assets/nails18.jpeg";
 import wig2 from "../../assets/wig2.jpeg";
 
 const allImages = [
-  // ============================================================
   // HAIR
-  // ============================================================
-  {
-    src: hair2,
-    alt: "Hair styling work at Philis Hair & Beauty Salon",
-    category: "Hair",
-    featured: true,
-  },
-  {
-    src: hair4,
-    alt: "Hair styling and finishing at Philis Salon",
-    category: "Hair",
-  },
-  {
-    src: hair5,
-    alt: "Hair beauty styling at Philis Salon Doha",
-    category: "Hair",
-  },
-  {
-    src: hair6,
-    alt: "Professional hair styling at Philis",
-    category: "Hair",
-  },
-  {
-    src: hair7,
-    alt: "Hair transformation at Philis Hair & Beauty Salon",
-    category: "Hair",
-  },
-  {
-    src: hair8,
-    alt: "Hair styling finish by Philis",
-    category: "Hair",
-  },
-  {
-    src: hair9,
-    alt: "Hair beauty result at Philis Salon",
-    category: "Hair",
-  },
-  {
-    src: hair10,
-    alt: "Hair styling detail at Philis",
-    category: "Hair",
-  },
-  {
-    src: hair12,
-    alt: "Hair styling and beauty finish at Philis",
-    category: "Hair",
-    featured: true,
-  },
-  {
-    src: hair13,
-    alt: "Hair styling work at Philis Salon Doha",
-    category: "Hair",
-  },
-  {
-    src: hair14,
-    alt: "Hair beauty styling result at Philis",
-    category: "Hair",
-  },
+  { src: hair2, alt: "Hair styling work at Philis Hair & Beauty Salon", category: "Hair", featured: true },
+  { src: hair4, alt: "Hair styling and finishing at Philis Salon", category: "Hair" },
+  { src: hair5, alt: "Hair beauty styling at Philis Salon Doha", category: "Hair" },
+  { src: hair6, alt: "Professional hair styling at Philis", category: "Hair" },
+  { src: hair7, alt: "Hair transformation at Philis Hair & Beauty Salon", category: "Hair" },
+  { src: hair8, alt: "Hair styling finish by Philis", category: "Hair" },
+  { src: hair9, alt: "Hair beauty result at Philis Salon", category: "Hair" },
+  { src: hair10, alt: "Hair styling detail at Philis", category: "Hair" },
+  { src: hair12, alt: "Hair styling and beauty finish at Philis", category: "Hair", featured: true },
+  { src: hair13, alt: "Hair styling work at Philis Salon Doha", category: "Hair" },
+  { src: hair14, alt: "Hair beauty styling result at Philis", category: "Hair" },
 
-  // ============================================================
   // NAILS
-  // ============================================================
-  {
-    src: nails2,
-    alt: "Nail design at Philis Hair & Beauty Salon",
-    category: "Nails",
-    featured: true,
-  },
-  {
-    src: nails3,
-    alt: "Nail styling and finish at Philis",
-    category: "Nails",
-  },
-  {
-    src: nails4,
-    alt: "Nail beauty work at Philis Salon",
-    category: "Nails",
-  },
-  {
-    src: nails6,
-    alt: "Nail design created at Philis",
-    category: "Nails",
-  },
-  {
-    src: nails8,
-    alt: "Manicure finish at Philis Salon Doha",
-    category: "Nails",
-  },
-  {
-    src: nails9,
-    alt: "Nail art at Philis Hair & Beauty Salon",
-    category: "Nails",
-  },
-  {
-    src: nails10,
-    alt: "Nail styling detail at Philis",
-    category: "Nails",
-  },
-  {
-    src: nails12,
-    alt: "Manicure styling at Philis",
-    category: "Nails",
-    featured: true,
-  },
-  {
-    src: nails13,
-    alt: "Nail art and beauty finish at Philis",
-    category: "Nails",
-  },
-  {
-    src: nails14,
-    alt: "Nail design work at Philis Salon",
-    category: "Nails",
-  },
-  {
-    src: nails15,
-    alt: "Nail beauty result at Philis",
-    category: "Nails",
-  },
-  {
-    src: nails16,
-    alt: "Nail styling result at Philis Hair & Beauty Salon",
-    category: "Nails",
-  },
-  {
-    src: nails17,
-    alt: "Manicure design at Philis Salon Doha",
-    category: "Nails",
-  },
-  {
-    src: nails18,
-    alt: "Nail art finish at Philis",
-    category: "Nails",
-  },
+  { src: nails2, alt: "Nail design at Philis Hair & Beauty Salon", category: "Nails", featured: true },
+  { src: nails3, alt: "Nail styling and finish at Philis", category: "Nails" },
+  { src: nails4, alt: "Nail beauty work at Philis Salon", category: "Nails" },
+  { src: nails6, alt: "Nail design created at Philis", category: "Nails" },
+  { src: nails8, alt: "Manicure finish at Philis Salon Doha", category: "Nails" },
+  { src: nails9, alt: "Nail art at Philis Hair & Beauty Salon", category: "Nails" },
+  { src: nails10, alt: "Nail styling detail at Philis", category: "Nails" },
+  { src: nails12, alt: "Manicure styling at Philis", category: "Nails", featured: true },
+  { src: nails13, alt: "Nail art and beauty finish at Philis", category: "Nails" },
+  { src: nails14, alt: "Nail design work at Philis Salon", category: "Nails" },
+  { src: nails15, alt: "Nail beauty result at Philis", category: "Nails" },
+  { src: nails16, alt: "Nail styling result at Philis Hair & Beauty Salon", category: "Nails" },
+  { src: nails17, alt: "Manicure design at Philis Salon Doha", category: "Nails" },
+  { src: nails18, alt: "Nail art finish at Philis", category: "Nails" },
 
-  // ============================================================
   // WIGS
-  // ============================================================
-  {
-    src: wig2,
-    alt: "Wig styling and installation at Philis Salon",
-    category: "Wigs",
-    featured: true,
-  },
+  { src: wig2, alt: "Wig styling and installation at Philis Salon", category: "Wigs", featured: true },
 ];
 
-const categories = ["All", "Hair", "Nails", "Wigs"];
-
 export default function Gallery() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const { t } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState(t.gallery.filters[0]);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const filteredImages =
-    activeCategory === "All"
-      ? allImages
-      : allImages.filter((img) => img.category === activeCategory);
+  // Map English categories to translated filters
+  const translatedFilters = t.gallery.filters;
+  const filterMap = {
+    "All": "All",
+    "Hair": "Hair",
+    "Nails": "Nails",
+    "Wigs": "Wigs",
+  };
+
+  const filteredImages = activeCategory === translatedFilters[0] ? allImages : allImages.filter((img) => img.category === activeCategory);
 
   return (
     <>
-      {/* =========================================================
-          PAGE HEADER (Tightened spacing & enriched copy)
-      ========================================================= */}
+      {/* PAGE HEADER */}
       <section className="relative pt-28 pb-14 sm:pt-36 sm:pb-18 bg-gradient-to-b from-pink-50/60 via-white to-white overflow-hidden">
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-rose-100/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-block text-xs sm:text-sm tracking-[0.25em] uppercase text-rose-400 font-medium mb-4"
-          >
-            The Philis Portfolio
+          <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="inline-block text-xs sm:text-sm tracking-[0.25em] uppercase text-rose-400 font-medium mb-4">
+            {t.gallery.eyebrow}
           </motion.span>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-6"
-          >
-            Crafted with{" "}
-            <span className="font-medium bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
-              intention.
-            </span>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-6">
+            {t.gallery.title1}{" "}
+            <span className="font-medium bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">{t.gallery.title2}</span>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-gray-500 text-base sm:text-lg leading-relaxed"
-          >
-            Every style we create is a reflection of the person wearing it. 
-            Browse through a curated collection of our hair transformations, 
-            intricate nail art, and flawless wig installations. While this 
-            gallery showcases some of our favorite visual work, it represents 
-            just a portion of the full beauty experience waiting for you at 
-            our Al Khalidiya studio.
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-gray-500 text-base sm:text-lg leading-relaxed">
+            {t.gallery.desc}
           </motion.p>
         </div>
       </section>
 
-      {/* =========================================================
-          GALLERY
-      ========================================================= */}
+      {/* GALLERY */}
       <section className="pb-20 sm:pb-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
           {/* Filters */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12"
-          >
-            {categories.map((category) => (
+          <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
+            {translatedFilters.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeCategory === category
-                    ? "bg-gray-900 text-white shadow-lg"
-                    : "bg-gray-100 text-gray-600 hover:bg-pink-50 hover:text-rose-500"
-                }`}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === category ? "bg-gray-900 text-white shadow-lg" : "bg-gray-100 text-gray-600 hover:bg-pink-50 hover:text-rose-500"}`}
               >
                 {category}
               </button>
@@ -274,46 +129,20 @@ export default function Gallery() {
                 <motion.div
                   key={`${img.category}-${img.src}`}
                   layout
-                  initial={{
-                    opacity: 0,
-                    scale: 0.92,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.92,
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.035,
-                  }}
-                  className={`relative rounded-2xl overflow-hidden cursor-pointer group ${
-                    img.featured
-                      ? "sm:col-span-2 sm:row-span-2"
-                      : ""
-                  }`}
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.92 }}
+                  transition={{ duration: 0.4, delay: index * 0.035 }}
+                  className={`relative rounded-2xl overflow-hidden cursor-pointer group ${img.featured ? "sm:col-span-2 sm:row-span-2" : ""}`}
                   onClick={() => setSelectedImage(img)}
                 >
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                    loading="lazy"
-                  />
+                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" loading="lazy" />
 
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-4 sm:p-5">
                     <div className="translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
-                      <span className="text-xs tracking-widest uppercase text-rose-300">
-                        {img.category}
-                      </span>
-
-                      <p className="text-white text-sm font-medium mt-1">
-                        Philis Hair & Beauty
-                      </p>
+                      <span className="text-xs tracking-widest uppercase text-rose-300">{img.category}</span>
+                      <p className="text-white text-sm font-medium mt-1">{t.gallery.lightboxLabel}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -321,36 +150,16 @@ export default function Gallery() {
             </AnimatePresence>
           </div>
 
-          {/* Privacy Note (Elevated copy to match the new header) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-2xl mx-auto mt-16 text-center"
-          >
-            <div className="w-10 h-10 rounded-full bg-pink-50 text-rose-400 flex items-center justify-center mx-auto mb-4">
-              ✦
-            </div>
-
-            <h2 className="text-xl sm:text-2xl font-medium text-gray-900 mb-3">
-              Discretion is part of the experience.
-            </h2>
-
-            <p className="text-sm sm:text-base text-gray-500 leading-relaxed">
-              We believe true beauty should be enjoyed in the moment. While we 
-              love sharing our hair, nail, and wig artistry, services like 
-              facials, massages, and body treatments are intentionally kept 
-              off-camera. This ensures every guest can completely unwind, knowing 
-              their personal experience remains entirely private.
-            </p>
+          {/* Privacy Note */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="max-w-2xl mx-auto mt-16 text-center">
+            <div className="w-10 h-10 rounded-full bg-pink-50 text-rose-400 flex items-center justify-center mx-auto mb-4">✦</div>
+            <h2 className="text-xl sm:text-2xl font-medium text-gray-900 mb-3">{t.gallery.privacyTitle}</h2>
+            <p className="text-sm sm:text-base text-gray-500 leading-relaxed">{t.gallery.privacyDesc}</p>
           </motion.div>
         </div>
       </section>
 
-      {/* =========================================================
-          LIGHTBOX
-      ========================================================= */}
+      {/* LIGHTBOX */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -361,56 +170,16 @@ export default function Gallery() {
             className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 sm:p-8"
             onClick={() => setSelectedImage(null)}
           >
-            {/* Image */}
-            <motion.img
-              initial={{
-                scale: 0.9,
-                opacity: 0,
-              }}
-              animate={{
-                scale: 1,
-                opacity: 1,
-              }}
-              exit={{
-                scale: 0.9,
-                opacity: 0,
-              }}
-              transition={{ duration: 0.3 }}
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              className="max-w-full max-h-[90vh] object-contain rounded-2xl"
-              onClick={(event) => event.stopPropagation()}
-            />
+            <motion.img initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} transition={{ duration: 0.3 }} src={selectedImage.src} alt={selectedImage.alt} className="max-w-full max-h-[90vh] object-contain rounded-2xl" onClick={(event) => event.stopPropagation()} />
 
-            {/* Image Label */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center">
-              <span className="inline-block text-xs tracking-[0.2em] uppercase text-rose-300">
-                {selectedImage.category}
-              </span>
-
-              <p className="text-white text-sm mt-1">
-                Philis Hair & Beauty Salon
-              </p>
+              <span className="inline-block text-xs tracking-[0.2em] uppercase text-rose-300">{selectedImage.category}</span>
+              <p className="text-white text-sm mt-1">{t.gallery.lightboxLabel}</p>
             </div>
 
-            {/* Close */}
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-6 right-6 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors"
-              aria-label="Close image"
-            >
-              <svg
-                className="w-6 h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+            <button onClick={() => setSelectedImage(null)} className="absolute top-6 right-6 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors" aria-label={t.gallery.closeImg}>
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </motion.div>

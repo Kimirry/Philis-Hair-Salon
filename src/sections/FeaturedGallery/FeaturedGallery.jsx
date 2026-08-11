@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../../context/LanguageContext";
 
-// Curated selection of 6 images
 import hair1 from "../../assets/hair1.jpeg";
 import hair3 from "../../assets/hair3.jpeg";
 import nails1 from "../../assets/nails1.jpeg";
@@ -19,21 +19,15 @@ const galleryImages = [
   { src: wig1, alt: "Wig installation at Philis Salon", category: "Wigs", span: "" },
 ];
 
-const categories = ["All", "Hair", "Nails", "Makeup", "Wigs"];
-
 export default function FeaturedGallery() {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const { t } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState(t.gallery.filters[0]);
 
-  const filteredImages = activeCategory === "All"
-    ? galleryImages
-    : galleryImages.filter((img) => img.category === activeCategory);
+  const filteredImages = activeCategory === t.gallery.filters[0] ? galleryImages : galleryImages.filter((img) => img.category === activeCategory);
 
   return (
     <section className="relative py-24 sm:py-32 bg-white overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header Section - Enhanced Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,24 +35,15 @@ export default function FeaturedGallery() {
           transition={{ duration: 0.7 }}
           className="text-center mb-12 max-w-3xl mx-auto"
         >
-          <span className="inline-block text-xs sm:text-sm tracking-[0.25em] uppercase text-pink-400 font-medium mb-4">
-            Our Work
-          </span>
+          <span className="inline-block text-xs sm:text-sm tracking-[0.25em] uppercase text-pink-400 font-medium mb-4">{t.featuredGallery.eyebrow}</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-6">
-            Beauty{" "}
-            <span className="font-medium bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
-              Portfolio
-            </span>
+            {t.featuredGallery.title1}{" "}
+            <span className="font-medium bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">{t.featuredGallery.title2}</span>
           </h2>
-          <p className="text-gray-500 text-base sm:text-lg leading-relaxed">
-            A glimpse into the artistry we create every day at our Al Khalidiya studio. From intricate nail art and flawless bridal makeup to transformative hair styling and custom wigs, each look tells a story of confidence, care, and uncompromising craftsmanship. 
-          </p>
-          <p className="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed">
-            Explore a curated selection of our recent masterpieces below, or visit our full gallery to see the full scope of what Philis can do for you.
-          </p>
+          <p className="text-gray-500 text-base sm:text-lg leading-relaxed">{t.featuredGallery.desc1}</p>
+          <p className="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed">{t.featuredGallery.desc2}</p>
         </motion.div>
 
-        {/* Filter Tabs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -66,14 +51,12 @@ export default function FeaturedGallery() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12"
         >
-          {categories.map((cat) => (
+          {t.gallery.filters.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeCategory === cat
-                  ? "bg-pink-500 text-white shadow-lg shadow-pink-500/25"
-                  : "bg-gray-100 text-gray-600 hover:bg-pink-50 hover:text-pink-500"
+                activeCategory === cat ? "bg-pink-500 text-white shadow-lg shadow-pink-500/25" : "bg-gray-100 text-gray-600 hover:bg-pink-50 hover:text-pink-500"
               }`}
             >
               {cat}
@@ -81,7 +64,6 @@ export default function FeaturedGallery() {
           ))}
         </motion.div>
 
-        {/* Image Grid - Optimized for 6 images */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 auto-rows-[200px] sm:auto-rows-[220px]">
           <AnimatePresence mode="popLayout">
             {filteredImages.map((img, i) => (
@@ -93,21 +75,12 @@ export default function FeaturedGallery() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 className={`relative rounded-2xl overflow-hidden cursor-pointer group ${img.span}`}
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
               >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                  loading="lazy"
-                />
-                <div className={`absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500 flex items-end p-4 sm:p-6 ${
-                  hoveredIndex === i ? "opacity-100" : "opacity-0"
-                }`}>
+                <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" loading="lazy" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500 flex items-end p-4 sm:p-6 opacity-0 group-hover:opacity-100">
                   <div>
                     <span className="inline-block text-xs tracking-widest uppercase text-pink-300 mb-1">{img.category}</span>
-                    <p className="text-white text-sm font-medium">Philis Salon</p>
+                    <p className="text-white text-sm font-medium">{t.featuredGallery.salonName}</p>
                   </div>
                 </div>
               </motion.div>
@@ -115,7 +88,6 @@ export default function FeaturedGallery() {
           </AnimatePresence>
         </div>
 
-        {/* Footer Link */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -123,17 +95,13 @@ export default function FeaturedGallery() {
           transition={{ delay: 0.3, duration: 0.5 }}
           className="text-center mt-12"
         >
-          <Link
-            to="/gallery"
-            className="inline-flex items-center gap-2 text-pink-500 hover:text-pink-600 font-medium transition-colors duration-300 group"
-          >
-            View Full Portfolio
+          <Link to="/gallery" className="inline-flex items-center gap-2 text-pink-500 hover:text-pink-600 font-medium transition-colors duration-300 group">
+            {t.featuredGallery.viewFull}
             <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
         </motion.div>
-
       </div>
     </section>
   );

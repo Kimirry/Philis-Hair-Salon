@@ -7,14 +7,10 @@ export default function LanguageSwitcher() {
     <button
       type="button"
       onClick={toggleLanguage}
-      aria-label={
-        language === "EN"
-          ? "Switch to Arabic"
-          : "Switch to English"
-      }
-      className="rounded-full border border-pink-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-pink-50 hover:text-pink-500"
+      aria-label="Change language"
+      className="border border-pink-300 rounded-full px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-500 transition"
     >
-      {language === "EN" ? "AR" : "EN"}
+      {language === "en" ? "العربية" : "English"}
     </button>
   );
 }
